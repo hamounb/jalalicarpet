@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% load jalali_tags %}
+{% load static %}
+{% block description %}
+تازه‌ترین اخبار و مقالات فرش دستبافت در وبلاگ مجموعه فرش جلالی تبریز
+{% endblock description %}
+{% block title %}
+فرش جلالی | {{ blog.title }}
+{% endblock title %}
+{% block content %}
+<div role="main" class="main">
+
+				<section class="page-header page-header-modern page-header-md" style="background-color:#255a6c">
+					<div class="container">
+						<div class="row">
+
+							<div class="col-md-12 align-self-center p-static order-2 text-center">
+								<h1 class="text-colo-light font-weight-bold text-5">{{ blog.title|truncatewords:8 }}</h1>
+								<span class="sub-title text-color-light">آخرین اخبار ما را مطالعه کنید</span>
+							</div>
+
+							<div class="col-md-12 align-self-center order-1">
+
+								<ul class="breadcrumb d-block text-center">
+									<li><a style="color:#d5b270" href="{% url 'jcompany:index' %}">خانه</a></li>
+									<li class="active" style="color:#d6d6d6">بلاگ</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container py-4">
+
+					<div class="row">
+						<div class="col-lg-3">
+							<aside class="sidebar mb-5 mb-lg-0 pb-2 pb-lg-0">
+								<form action="page-search-results.html" method="get">
+									<div class="input-group mb-3 pb-1">
+										<input class="form-control text-1" placeholder="جستجو ..." name="s" id="s" type="text">
+										<span class="input-group-append">
+											<button type="submit" class="btn btn-primary text-1 p-2"><i class="fas fa-search m-2"></i></button>
+										</span>
+									</div>
+								</form>
+								<h5 class="font-weight-bold pt-4">دسته‌بندی ها</h5>
+								<ul class="nav nav-list flex-column mb-5">
+                                {% for cat in cat %}
+									<li class="nav-item"><a class="nav-link" href="#">{{ cat.title }}</a></li>
+                                {% endfor %}
+								</ul>
+								<div class="tabs tabs-dark mb-4 pb-2">
+									<ul class="nav nav-tabs">
+										<li class="nav-item active"><a class="nav-link show active text-1 font-weight-bold text-uppercase" href="#popularPosts" data-toggle="tab">جدیدترین‌ها</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane active" id="popularPosts">
+											<ul class="simple-post-list">
+                                            {% for rec in recent %}
+												<li>
+													<div class="post-image">
+														<div class="img-thumbnail img-thumbnail-no-borders d-block">
+															<a href="{% url 'blog:blog-details' bid=rec.id %}">
+                                                            {% if rec.cover %}
+																<img src="{{ rec.cover.url }}" width="50" height="50" alt="{{ rec.title }}">
+                                                            {% else %}
+                                                                <img src="{% static 'img/blank.jpg' %}" width="50" height="50" alt="{{ rec.title }}">
+                                                            {% endif %}
+															</a>
+														</div>
+													</div>
+													<div class="post-info">
+														<a href="{% url 'blog:blog-details' bid=rec.id %}">{{ rec.title|truncatewords:5 }}</a>
+														<div class="post-meta">
+															 {{ rec.created_date|to_jalali:'%d' }} {{ rec.created_date|to_jalali:'%b' }} {{ rec.created_date|to_jalali:'%Y' }}
+														</div>
+													</div>
+												</li>
+											{% endfor %}
+											</ul>
+										</div>
+										
+									</div>
+								</div>
+							</aside>
+						</div>
+						<div class="col-lg-9">
+							<div class="blog-posts single-post">
+							
+								<article class="post post-large blog-single-post border-0 m-0 p-0">
+									<div class="post-image ml-0">
+										<a href="blog-post.html">
+                                        {% if blog.cover %}
+											<img src="{{ blog.cover.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="{{ blog.title }}">
+                                        {% else %}
+                                            <img src="{% static 'img/blank.jpg' %}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="{{ blog.title }}">
+                                        {% endif %}
+										</a>
+									</div>
+							
+									<div class="post-date ml-0">
+										<span class="day">{{ blog.created_date|to_jalali:'%d' }}</span>
+										<span class="month">{{ blog.created_date|to_jalali:'%b' }}</span>
+									</div>
+							
+									<div class="post-content ml-0">
+							
+										<h2 class="font-weight-bold mt-n3 mb-2 pb-1 pt-1 line-height-7 text-7"><a href="blog-post.html">{{ blog.title }}</a></h2>
+							
+										<div class="post-meta">
+											<span><i class="far fa-user"></i> توسط  <a href="#">{{ blog.user.first_name}} {{ blog.user.last_name }}</a> </span>
+											<span><i class="far fa-folder"></i> <a href="#">{{ blog.category.title }}</a> </span>
+											<span><i class="far fa-comments"></i> <a href="#">{{ blog.created_date|to_jalali:'%d' }} {{ blog.created_date|to_jalali:'%b' }} {{ blog.created_date|to_jalali:'%Y' }}</a></span>
+										</div>
+
+                                        <p>{{ blog.content|safe }}</p>
+
+										{% comment %} <div class="post-block mt-5 post-share">
+											<h4 class="mb-3 secondary-font">به اشتراک گذاری این مطلب</h4>
+							
+											<!-- AddThis Button BEGIN -->
+											<div class="addthis_toolbox addthis_default_style ">
+												<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+												<a class="addthis_button_tweet"></a>
+												<a class="addthis_button_pinterest_pinit"></a>
+												<a class="addthis_counter addthis_pill_style"></a>
+											</div>
+											<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50faf75173aadc53"></script>
+											<!-- AddThis Button END -->
+							
+										</div> {% endcomment %}
+							
+							
+									</div>
+								</article>
+							
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+{% endblock content %}

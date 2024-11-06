@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block description %}
+سوالات متداول درمورد نحوه خرید از مجموعه فرش جلالی تبریز
+{% endblock description %}
+
+{% block title %}
+سوالات متداول | شرکت فرش جلالی تبریز
+{% endblock title %}
+
+{% block content %}
+<div role="main" class="main">
+
+    <section class="page-header page-header-modern page-header-md" style="background-color:#255a6c">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 align-self-center p-static order-2 text-center">
+                    <h1 class="text-color-light font-weight-bold text-5">سوالات متداول</h1>
+                </div>
+
+                <div class="col-md-12 align-self-center order-1">
+
+                    <ul class="breadcrumb d-block text-center">
+                        <li><a style="color:#d5b270" href="{% url 'jcompany:index' %}">خانه</a></li>
+                        <li class="active" style="color:#d6d6d6">سوالات</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container py-4">
+
+        <div class="row">
+            <div class="col">
+
+                <h2 class="font-weight-normal text-7 mb-2"><strong class="font-weight-extra-bold">سوالات</strong> متداول</h2>
+                <p class="lead">سوال و جواب‌های زیر می‌تواند به شما کمک کند تا از نحوه خرید و ارسال کالا و روند ثبت سفارش را در مجموعه فرش جلالی با شما آشنا کند.</p>
+
+                <hr class="solid my-5">
+
+                <div class="toggle toggle-primary" data-plugin-toggle>
+                    {% for question in questions %}
+                    {% if forloop.first %}
+                    <section class="toggle active">
+                        <a class="toggle-title">{{ question.question }}</a>
+                        <div class="toggle-content">
+                            <p>{{ question.answer|safe }}</p>
+                        </div>
+                    </section>
+                    {% else %}
+                    <section class="toggle">
+                        <a class="toggle-title">{{ question.question }}</a>
+                        <div class="toggle-content">
+                            <p>{{ question.answer|safe }}</p>
+                        </div>
+                    </section>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock content %}

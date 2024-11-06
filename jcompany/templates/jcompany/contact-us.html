@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block description %}
+شرکت تعاونی فرش و گلیم تبریز - فرش جلالی (شماره تماس 09901073928)
+{% endblock description %}
+
+{% block title %}
+فرش جلالی تبریز | تماس با ما
+{% endblock title %}
+
+{% block content %}
+<div role="main" class="main" style="background-color:#F6F4F5">
+            <section>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3141.357320603817!2d46.3315374!3d38.0620588!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x401a1ae3e014af03%3A0x20678fce31ba93ec!2z2LTYsdqp2Kog2YHYsdi0INis2YTYp9mE24wg2KrYqNix24zYsg!5e0!3m2!1sen!2s!4v1666784972767!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+            </section>
+
+				<div class="container">
+
+					<div class="row py-4">
+						<div class="col-lg-6">
+
+							<div class="overflow-hidden mb-1">
+								<h2 class="font-weight-normal text-7 mt-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="200"><strong class="font-weight-extra-bold">تماس</strong> با ما</h2>
+							</div>
+							<div class="overflow-hidden mb-4 pb-3">
+								<p class="mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">فرم زیر را پر کنید تا با شما تماس بگیریم</p>
+							</div>
+
+							<form class="contact-form mb-5 mb-lg-0" method="POST">
+                                <div class="contact-form-success alert alert-success d-none mt-4">
+									<strong>موفقیت!</strong> پیام شما به ما ارسال شد.
+								</div>
+							
+								<div class="contact-form-error alert alert-danger d-none mt-4">
+									<strong>خطا!</strong> خطایی در ارسال پیام شما پیش آمد.
+									<span class="mail-error-message text-1 d-block"></span>
+								</div>
+                            {% csrf_token %}	
+								<div class="form-row">
+									<div class="form-group col-lg-6">
+										<label class="required font-weight-bold text-dark text-2">نام کامل</label>
+										<input type="text" value="" name="full_name" data-msg-required="لطفا نام خود را وارد کنید." maxlength="100" class="form-control" name="full_name" required>
+									</div>
+									<div class="form-group col-lg-6">
+										<label class="required font-weight-bold text-dark text-2">آدرس ایمیل یا شماره همراه</label>
+										<input type="text" value="" name="phone" data-msg-required="لطفا آدرس ایمیل یا شماره همراه خود را وارد کنید." data-msg-email="لطفا یک آدرس ایمیل معتبر وارد کنید." maxlength="100" class="form-control text-left" name="email_phone" dir="ltr" required>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col">
+										<label class="font-weight-bold text-dark text-2">موضوع</label>
+										<input type="text" value="" name="title" data-msg-required="لطفا موضوع را وارد کنید." maxlength="100" class="form-control" name="subject">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col">
+										<label class="required font-weight-bold text-dark text-2">پیام</label>
+										<textarea maxlength="5000" name="comment" data-msg-required="لطفا پیام خود را وارد کنید." rows="8" class="form-control" name="message" required></textarea>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col">
+										<input type="submit" value="ارسال پیام" class="btn btn-primary btn-modern" data-loading-text="در حال بارگذاری ...">
+									</div>
+								</div>
+							</form>
+
+						</div>
+						<div class="col-lg-6">
+
+							<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
+								<h4 class="mt-2 mb-1"><strong>فروشگاه</strong> ما</h4>
+								<ul class="list list-icons list-icons-style-2 mt-2">
+									<li class="line-height-9"><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">آدرس:</strong> تبریز، بازارمظفریه، پلاک۱۹ </li>
+								</ul>
+							</div>
+
+							<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="1000">
+								<h4 class="mt-2 mb-1"><strong>دفتر</strong> ما</h4>
+								<ul class="list list-icons list-icons-style-2 mt-2">
+									<li class="line-height-9"><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">آدرس:</strong> تبریز، بلوار ۲۹بهمن، برج شهر </li>
+									<li class="line-height-9"><i class="fas fa-phone top-6"></i> <strong class="text-dark">تلفن:</strong> <span class="ltr-text">04133248201-04133248034</span></li>
+									<li class="line-height-9"><i class="fas fa-envelope top-6"></i> <strong class="text-dark">ایمیل:</strong> <a href="mailto:mail@example.com">jalalicollection@gmail.com</a></li>
+								</ul>
+							</div>
+
+							<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="1200">
+								<h4 class="mt-2 mb-1"><strong>پشتیبانی</strong></h4>
+								<ul class="list list-icons list-icons-style-2 mt-2">
+									<li class="line-height-9"><i class="fas fa-phone top-6"></i> <strong class="text-dark">وب‌سایت:</strong> <span class="ltr-text"> (+98) 990 107 3928</span></li>
+									<li class="line-height-9"><i class="fab fa-instagram top-6"></i> <strong class="text-dark">اینستاگرام:</strong> <a href="mailto:jalalicollection@gmail.com" class="ltr-text">@jalalicarpet.ir</a></li>
+									<li class="line-height-9"><i class="fab fa-telegram top-6"></i> <strong class="text-dark">تلگرام:</strong> <a href="t.me/jalalicarpetadmin" class="ltr-text">@jalalicarpetadmin</a></li>
+								</ul>
+							</div>
+
+							<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">
+								<h4 class="pt-5"><strong>ساعات</strong> کاری</h4>
+								<ul class="list list-icons list-dark mt-2">
+									<li><i class="far fa-clock top-6"></i> شنبه تا چهارشنبه - 8 ق.ظ تا 4 ب.ظ</li>
+									<li><i class="far fa-clock top-6"></i> پنج‌شنبه - 8 ق.ظ تا 2 ب.ظ</li>
+									<li><i class="far fa-clock top-6"></i> جمعه - تعطیل</li>
+								</ul>
+							</div>
+
+							<h4 class="pt-5"><strong>ارتباط</strong> با ما</h4>
+							<p class="lead mb-0 text-1rem">شما می‌توانید از طریق شماره، آدرس ایمیل و صفحه شبکه‌های اجتماعی با ما در ارتباط باشید.</p>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<section class="call-to-action call-to-action-default with-button-arrow content-align-center call-to-action-in-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-9 col-lg-9">
+							<div class="call-to-action-content">
+								<h2 class="font-weight-normal text-6 mb-2"><strong class="font-weight-extra-bold">بزرگترین و خاص‌ترین</strong> مجموعه دستبافته‌های فرش،تابلو‌فرش و گلیم فرش در <strong class="font-weight-extra-bold">ایران</strong> که شما آنها را می‌پسندید! </h2>
+								<p class="mb-0 mt-1"><strong class="font-weight-extra-bold">زیباترین</strong> دستبافته‌های هنرمندان ایران‌زمین</p>
+							</div>
+						</div>
+						<div class="col-md-3 col-lg-3">
+							<div class="call-to-action-btn">
+								<a href="{% url 'store:all-products' %}" target="_blank" class="btn btn-dark btn-lg text-3 font-weight-semibold px-4 py-3">مشاهده همه از اینجا</a><span class="arrow hlb" data-appear-animation="rotateInUpLeft" style="top: -40px; right: 64%;"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+<script>
+
+			/*
+			Map Settings
+
+				Find the Latitude and Longitude of your address:
+					- https://www.latlong.net/
+					- http://www.findlatitudeandlongitude.com/find-address-from-latitude-and-longitude/
+
+			*/
+
+			// Map Markers
+			var mapMarkers = [{
+				address: "New York, NY 10017",
+				html: "<strong>New York Office<br>New York, NY 10017",
+				icon: {
+					image: "img/pin.png",
+					iconsize: [26, 46],
+					iconanchor: [12, 46]
+				},
+				popup: true
+			}];
+
+			// Map Initial Location
+			var initLatitude = 40.75198;
+			var initLongitude = -73.96978;
+
+			// Map Extended Settings
+			var mapSettings = {
+				controls: {
+					draggable: (($.browser.mobile) ? false : true),
+					panControl: true,
+					zoomControl: true,
+					mapTypeControl: true,
+					scaleControl: true,
+					streetViewControl: true,
+					overviewMapControl: true
+				},
+				scrollwheel: false,
+				markers: mapMarkers,
+				latitude: initLatitude,
+				longitude: initLongitude,
+				zoom: 11
+			};
+
+			var map = $('#googlemaps').gMap(mapSettings);
+
+			// Map text-center At
+			var mapCenterAt = function(options, e) {
+				e.preventDefault();
+				$('#googlemaps').gMap("centerAt", options);
+			}
+
+		</script>
+{% endblock content %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load jalali_tags %}
+{% block description %}
+تازه‌ترین اخبار و مقالات فرش دستبافت در وبلاگ مجموعه فرش جلالی تبریز
+{% endblock description %}
+{% block title %}
+فرش جلالی | بلاگ و اخبار
+{% endblock title %}
+
+{% block content %}
+<div role="main" class="main" style="background-color:#edebe8">
+
+				<section class="page-header page-header-modern page-header-md" style="background-color:#255a6c">
+					<div class="container">
+						<div class="row">
+
+							<div class="col-md-12 align-self-center p-static order-2 text-center">
+								<h1 class="text-color-light font-weight-bold text-5">اخبار و مقالات</h1>
+								<span class="sub-title text-color-light">آخرین مقالات ما را مطالعه کنید</span>
+							</div>
+
+							<div class="col-md-12 align-self-center order-1">
+
+								<ul class="breadcrumb d-block text-center">
+									<li><a style="color:#d5b270" href="{% url 'jcompany:index' %}">خانه</a></li>
+									<li class="active" style="color:#d6d6d6">بلاگ</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container py-4">
+
+					<div class="row">
+						<div class="col">
+							<div class="blog-posts">
+
+								<div class="row">
+                                    {% for blog in blog %}
+									<div class="col-md-6 col-lg-4">
+										<article class="post post-medium border-0 pb-0 mb-5">
+											<div class="post-image">
+												<a href="{% url 'blog:blog-details' bid=blog.id %}">
+                                                {% if blog.cover %}
+													<img src="{{ blog.cover.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="{{ blog.title }}">
+                                                {% else %}
+                                                    <img src="{% static 'img/blank.jpg' %}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="{{ blog.title }}">
+                                                {% endif %}
+												</a>
+											</div>
+
+											<div class="post-content">
+
+												<h2 class="font-weight-semibold text-5 line-height-7 mt-3 mb-2 pt-1"><a href="{% url 'blog:blog-details' bid=blog.id %}">{{ blog.title|safe|truncatewords:15 }}</a></h2>
+												<p class="font-dark">{{ blog.content|safe|truncatewords:30 }}</p>
+
+												<div class="post-meta">
+													<span><i class="far fa-user"></i> توسط  <a href="#">{{ blog.user.first_name }} {{ blog.user.last_name }}</a> </span>
+													<span><i class="far fa-folder"></i> <a href="#">{{ blog.category.title }}</a></span>
+													<span><i class="far fa-comments"></i> <a href="#">{{ blog.created_date|to_jalali:'%d' }} {{ blog.created_date|to_jalali:'%b' }} {{ blog.created_date|to_jalali:'%Y' }}</a></span>
+													<span class="d-block mt-2 pt-1"><a href="{% url 'blog:blog-details' bid=blog.id %}" class="btn btn-light text-1 text-uppercase">بیشتر بخوانید</a></span>
+												</div>
+
+											</div>
+										</article>
+									</div>
+                                    {% endfor %}
+								</div>
+								{% if page_obj.has_next  or page_obj.has_previous %}
+								<div class="row">
+									<div class="col">
+										<ul class="pagination float-right">
+										{% if page_obj.has_previous %}
+											<li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+										{% endif %}
+											<li class="page-item active"><a class="page-link">{{ page_obj.number }}</a></li>
+										{% if page_obj.has_next %}
+											<li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+											<li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+										{% endif %}
+										</ul>
+									</div>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+{% endblock content %}

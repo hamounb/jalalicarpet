@@ -1,0 +1,379 @@
+
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html dir="rtl">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+
+		<title>{% block title %}
+		
+		{% endblock title %}</title>	
+
+		<meta name="keywords" content="فرش جلالی تبریز - فرش دستباف - تابلوفرش دستباف - فرش سنتی و گلیم - نمایشگاه فرش دستباف - صادرات فرش دستباف">
+		<meta name="description" content="{% block description %} {% endblock description %}">
+		<meta name="author" content="jalalicarpet.com">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+		
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/animate/animate.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.min.css' %}">
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="{% static 'css/theme.css' %}">
+		<link rel="stylesheet" href="{% static 'css/theme-elements.css' %}">
+		<link rel="stylesheet" href="{% static 'css/theme-blog.css' %}">
+		<link rel="stylesheet" href="{% static 'css/theme-shop.css' %}">
+
+		<!-- Current Page CSS -->
+		<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/settings.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/layers.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/navigation.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/circle-flip-slideshow/css/component.css' %}">
+		
+		<!-- Demo CSS -->
+
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="{% static 'css/skins/default.css' %}"> 
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+		<!-- Head Libs -->
+		<script src="{% static 'vendor/modernizr/modernizr.min.js' %}"></script>
+		<script>
+			function autoSubmit() {
+				document.getElementById('checkbox-form').submit();
+			}
+		</script>
+	</head>
+	<body>
+		<div class="body">
+			<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 139, 'stickySetTop': '-139px', 'stickyChangeLogo': true}">
+				<div class="header-body box-shadow-none" data-sticky-header-style="{'minResolution': 0}" data-sticky-header-style-active="{'background-color': '#f7f7f7'}" data-sticky-header-style-deactive="{'background-color': '#FFF'}">
+					<div class="header-top border-0">
+						<div class="container-fluid ">
+							<div class="header-row h-100">
+								<div class="header-column justify-content-end">
+									<div class="header-row">
+										<nav class="header-nav-top">
+											<ul class="nav nav-pills">
+												<li class="nav-item nav-item-anim-icon d-none d-md-block">
+													<a class="nav-link pl-0 text-primary" href="{% url 'jcompany:about-us' %}"><i class="fas fa-angle-left"></i> درباره ما</a>
+												</li>
+												<li class="nav-item nav-item-anim-icon d-none d-md-block">
+													<a class="nav-link text-primary" href="{% url 'jcompany:contact-us' %}"><i class="fas fa-angle-left"></i> تماس با ما</a>
+												</li>
+												<li class="nav-item dropdown nav-item-left-border d-none d-sm-block">
+													<a class="nav-link text-primary" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<img src="{% static 'img/blank.gif' %}" class="flag flag-ir" alt="Farsi"> فارسی
+														<i class="fas fa-angle-down p-relative top-1"></i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLanguage">
+														<a class="dropdown-item text-primary" href="#"><img src="{% static 'img/blank.gif' %}" class="flag flag-us" alt="English"> انگلیسی</a>
+													</div>
+												</li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="header-container container-fluid">
+						<div class="header-row pt-2">
+							<div class="header-column">
+								<div class="header-row">
+									<div class="">
+										<a href="index.html">
+											<img style="width: 120px;" alt="Porto" src="{% static 'img/logos/logo.png' %}">
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-center d-none d-lg-block">
+								<div class="header-row">
+											<img style="width:30%;" alt="فرش جلالی تبریز" src="{% static 'img/logos/header-center.png' %}">
+								</div>
+							</div>
+							<div class="header-column justify-content-center">
+								<div class="header-row pl-4 justify-content-end">
+									<ul class="header-social-icons social-icons d-sm-block social-icons-clean m-0">
+										<li class="social-icons-instagram"><a style="font-size: 1.5rem;" href="https://www.instagram.com/jalalicarpet.ir" target="_blank" title="instagram"><i style=" color: #255a6c" class="fab fa-instagram"></i></a></li>
+										<li class="social-icons-whatsapp"><a style="font-size: 1.5rem;" href="https://wa.me/989901073928" target="_blank" title="whatsapp"><i style=" color: #255a6c" class="fab fa-whatsapp"></i></a></li>
+										<li class="social-icons-telegram"><a style="font-size: 1.5rem;" href="https://t.me/JalaliCarpet_ir" target="_blank" title="telegram"><i style=" color: #255a6c" class="fab fa-telegram"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container-fluid">
+						<div class="header-nav-bar px-3 pt-2 px-lg-0">
+							<div class="header-row">
+								<div class="header-column justify-content-center">
+									<div class="header-row">
+										<div class="header-nav justify-content-center" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="{'margin-right': '150px'}" data-sticky-header-style-deactive="{'margin-right': '0'}">
+											<div class="header-nav-main header-nav-main-dark-text header-nav-main-dropdown-no-borders header-nav-main-dropdown-arrow header-nav-main-effect-1 header-nav-main-sub-effect-1">
+												<nav class="collapse">
+													<ul class="nav nav-pills" id="mainNav">
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle active" href="{% url 'jcompany:index' %}">
+																صفحه اصلی
+															</a>
+														</li>
+														<li class="dropdown dropdown-mega">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'store:category-list' %}">
+																محصولات
+															</a>
+															<ul class="dropdown-menu">
+																<li>
+																	<div class="dropdown-mega-content">
+																		<div class="row">
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title">فرش دستبافت</span>
+																				<ul class="dropdown-mega-sub-nav">
+																					{% for c in carpet %}
+																					<li><a class="dropdown-item" href="{% url 'store:category-products' cid=c.id %}">{{ c.title }}</a></li>
+																					{% endfor %}
+																				</ul>
+																			</div>
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title">تایلوفرش دستبافت</span>
+																				<ul class="dropdown-mega-sub-nav">
+																					{% for w in wall %}
+																					<li><a class="dropdown-item" href="{% url 'store:category-products' cid=w.id %}">{{ w.title }}</a></li>
+																					{% endfor %}
+																				</ul>
+																			</div>
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title">فرش‌های سنتی</span>
+																				<ul class="dropdown-mega-sub-nav">
+																					{% for k in kilim %}
+																						<li><a class="dropdown-item" href="{% url 'store:category-products' cid=k.id %}">{{ k.title }}</a></li>
+																					{% endfor %}							
+																				</ul>
+																			</div>
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title">سایر</span>
+																				<ul class="dropdown-mega-sub-nav">
+																					<li><a class="dropdown-item" href="{% url 'store:all-products' %}">همه محصولات</a></li>
+																					<li><a class="dropdown-item" href="#">ویژه</a></li>
+																					<li><a class="dropdown-item" href="#">سایر </a></li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+															</ul>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="#">
+																فروش ویژه
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'jcompany:exhibition' %}">
+																نمایشگاه‌ها
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="#">
+																باشگاه مشتریان
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'jcompany:question' %}">
+																سوالات متداول
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'blog:blog' %}">
+																بلاگ
+															</a>
+														</li>
+													</ul>
+												</nav>
+											</div>
+											<button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
+												<i class="fas fa-bars"></i>
+											</button>
+										</div>
+                                        <div class="header-nav-features d-none d-md-block">
+                                            <div class=" header-nav-features-cart header-nav-features-cart-big d-inline-flex ml-2" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="{'top': '79px'}" data-sticky-header-style-deactive="{'top': '0'}">
+                                                <a href="#" class="header-nav-features-toggle">
+                                                    <img src="{% static 'img/icons/icon-cart-big.svg' %}" height="34" alt="" class="header-nav-top-icon-img">
+                                                    
+                                                </a>
+                                                {% comment %} <div class="header-nav-features-dropdown" id="headerTopCartDropdown">
+                                                    <ol class="mini-products-list">
+                                                        <li class="item">
+                                                            <a href="#" title="Camera X1000" class="product-image"><img src="img/products/product-1.jpg" alt="Camera X1000"></a>
+                                                            <div class="product-details">
+                                                                <p class="product-name">
+                                                                    <a href="#">دوربین X1000 </a>
+                                                                </p>
+                                                                <p class="qty-price">
+                                                                     1 × <span class="price">890,000 تومان</span>
+                                                                </p>
+                                                                <a href="#" title="Remove This Item" class="btn-remove"><i class="fas fa-times"></i></a>
+                                                            </div>
+                                                        </li>
+                                                    </ol>
+                                                    <div class="totals">
+                                                        <span class="label">جمع کل:</span>
+                                                        <span class="price-total"><span class="price">890,000 تومان</span></span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a class="btn btn-dark" href="#">مشاهده سبد</a>
+                                                        <a class="btn btn-primary" href="#">پرداخت</a>
+                                                    </div>
+                                                </div> {% endcomment %}
+                                            </div>
+                                            <div class=" header-nav-features-cart header-nav-features-cart-big d-inline-flex ml-2" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="{'top': '79px'}" data-sticky-header-style-deactive="{'top': '0'}">
+                                                <a href="#" class="header-nav-features-toggle">
+                                                    <img src="{% static 'img/icons/people.png' %}" height="34" alt="" class="header-nav-top-icon-img">
+                                                </a>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+            {% block content %}
+            
+            {% endblock content %}
+			<footer id="footer" class="bg-color-quaternary border-top-0">
+							<div class="container py-4">
+								<div class="row py-5">
+									<div class="col-md-6 col-lg-4 mb-4 mb-lg-0 pb-2 pb-lg-0">
+										<h5 class="text-3 mb-3 opacity-7">خبرنامه</h5>
+										<p class="pr-1 text-color-light">از آخرین محصولات و رویدادهای ما با خبر باشید. آدرس ایمیل یا شماره همراه خود را وارد کرده و مشترک خبرنامه ما شوید.</p>
+										<div class="alert alert-success d-none" id="newsletterSuccess">
+											<strong>موفقیت!</strong> شما به لیست ایمیل ما افزوده شدید.
+										</div>
+										<div class="alert alert-danger d-none" id="newsletterError"></div>
+										<form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST" class="mr-md-4 mb-3">
+											<div class="input-group input-group-rounded">
+												<input class="form-control form-control-sm bg-light text-left" placeholder="شماره همراه یا ایمیل" dir="ltr" name="newsletterEmail" id="newsletterEmail" type="text">
+												<span class="input-group-append">
+													<button class="btn btn-light text-color-dark" type="submit"><strong>برو!</strong></button>
+												</span>
+											</div>
+										</form>
+									</div>
+									<div class="col-md-6 col-lg-3 mb-4 mb-lg-0 pb-2 pb-lg-0">
+										<h5 class="text-3 mb-3 opacity-7">جدیدترین مقاله‌ها</h5>
+										{% for blogs in blogs %}
+										<div class="mb-2">
+											
+											<a style="color:#DDB962" href="{% url 'blog:blog-details' bid=blogs.id %}">{{ blogs.title|safe|truncatewords:8 }}</a>
+											
+										</div>
+										{% endfor %}
+									</div>
+									<div class="col-md-6 col-lg-3 mb-4 mb-md-0 pb-2 pb-md-0">
+										<h5 class="text-3 mb-3 opacity-7">تماس با ما</h5>
+										<ul class="list list-icons list-icons-lg mb-2">
+											<li class="mb-1"><i class="far fa-dot-circle text-color-light"></i><p class="m-0 text-color-light">تبریز، بازار مظفریه، پلاک19</p></li>
+											<li class="mb-1"><i class="far fa-dot-circle text-color-light"></i><p class="m-0 text-color-light">تبریز، بلوار 29بهمن، برج شهر</p></li>
+											<li class="mb-1"><i class="icon-phone icons text-color-light"></i><p class="m-0"><a class="text-color-light ltr-text" href="tel:8001234567">(+98) 41 332 48201</a></p></li>
+											<li class="mb-1"><i class="fab fa-whatsapp text-color-light"></i><p class="m-0"><a class="text-color-light ltr-text" href="tel:8001234567">(+98) 990 107 3928</a></p></li>
+											<li class="mb-1"><i class="far fa-envelope text-color-light"></i><p class="m-0"><a class="text-color-light" href="mailto:mail@example.com">jalalicarpet.ir@gmail.com</a></p></li>
+										</ul>
+									</div>
+									<div class="col-md-6 col-lg-2">
+										<h5 class="text-3 mb-3 opacity-7 pb-1">ما را دنبال کنید</h5>
+										<div>
+											<span><a class="pl-1" href="https://www.instagram.com/jalalicarpet.ir" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color:#d5b270; font-size:1.8rem"></i></a></span>
+											<span><a class="pl-1" href="https://t.me/JalaliCarpet_ir" target="_blank" title="telegram"><i class="fab fa-telegram" style="color:#d5b270; font-size:1.8rem"></i></a></span>
+											<span><a class="pl-1" href="https://wa.me/989901073928" target="_blank" title="whatsapp"><i class="fab fa-whatsapp" style="color:#d5b270; font-size:1.8rem"></i></a></span>
+									</div>
+								</div>
+							</div>
+							<div class="footer-copyright bg-color-quaternary bg-color-scale-overlay bg-color-scale-overlay-1">
+								<div class="bg-color-scale-overlay-wrapper">
+									<div class="container py-2">
+										<div class="row">
+											<div class="col-lg-1 d-flex align-items-center justify-content-center justify-content-lg-start mb-2 mb-lg-0 mt-1 mt-lg-0">
+												<a href="index.html" class="logo pr-0 pr-lg-3">
+													<img alt="فرش جلالی" src="{% static 'img/logo.png' %}" class="opacity-5" height="60">
+												</a>
+											</div>
+											<div class="col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-start mb-4 mb-lg-0">
+												<p class="text-color-light">تمامی حقوق وب‌سایت متعلق به فرش جلالی تبریز می‌باشد</p>
+											</div>
+											<div class="col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end">
+												<nav id="sub-menu">
+													<ul>
+														<li class="border-0"><i class="fas fa-angle-left" style="color:#d5b270"></i><a style="color:#d5b270" href="{% url 'jcompany:question' %}" class="ml-1 text-decoration-none"> سوالات متداول</a></li>
+														<li class="border-0"><i class="fas fa-angle-left" style="color:#d5b270"></i><a style="color:#d5b270" href="{% url 'store:category-list' %}" class="ml-1 text-decoration-none"> محصولات</a></li>
+														<li class="border-0"><i class="fas fa-angle-left" style="color:#d5b270"></i><a style="color:#d5b270" href="#" class="ml-1 text-decoration-none"> سبد خرید</a></li>
+													</ul>
+												</nav>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</footer>
+        </div>
+        
+					<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+					<script src="{% static 'vendor/jquery.appear/jquery.appear.min.js' %}"></script>
+					<script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+					<script src="{% static 'vendor/jquery.cookie/jquery.cookie.min.js' %}"></script>
+					<script src="{% static 'vendor/popper/umd/popper.min.js' %}"></script>
+					<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+					<script src="{% static 'vendor/common/common.min.js' %}"></script>
+					<script src="{% static 'vendor/jquery.validation/jquery.validate.min.js' %}"></script>
+					<script src="{% static 'vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+					<script src="{% static 'vendor/jquery.gmap/jquery.gmap.min.js' %}"></script>
+					<script src="{% static 'vendor/jquery.lazyload/jquery.lazyload.min.js' %}"></script>
+					<script src="{% static 'vendor/isotope/jquery.isotope.min.js' %}"></script>
+					<script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+					<script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+					<script src="{% static 'vendor/vide/jquery.vide.min.js' %}"></script>
+					<script src="{% static 'vendor/vivus/vivus.min.js' %}"></script>
+					
+					<script src="{% static 'js/theme.js' %}"></script>
+					
+					<script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+					<script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+					<script src="{% static 'vendor/circle-flip-slideshow/js/jquery.flipshow.min.js' %}"></script>
+					<script src="{% static 'js/views/view.home.js' %}"></script>
+					<script src="{% static 'js/views/view.shop.js' %}"></script>
+					
+					<script src="{% static 'js/custom.js' %}"></script>
+					<script src="{% static 'js/views/view.contact.js' %}"></script>
+					<script src="{% static 'js/theme.init.js' %}"></script>
+					<script type="text/javascript">
+  !function(){var i="CAuKA3",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+</script>
+
+
+					<script src="{% static 'js/theme.init.js' %}"></script>
+					{% comment %} <script src="{% static 'js/views/view.contact.js' %}"></script> {% endcomment %}
+
+
+	</body>
+
+</html>

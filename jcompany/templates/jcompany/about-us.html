@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block description %}
+شرکت تعاونی فرش و گلیم تبریز - فرش جلالی
+{% endblock description %}
+
+{% block title %}
+فرش جلالی تبریز | درباره ما
+{% endblock title %}
+
+{% load static %}
+
+
+
+{% block content %}
+<div role="main" class="main">
+				<div role="main" class="main">
+				<section class="page-header page-header-modern page-header-md" style="background-color:#255a6c">
+					<div class="container">
+						<div class="row">
+
+							<div class="col-md-12 align-self-center p-static order-2 text-center">
+								<h1 class="mt-1 mb-n1 text-color-light">شرکت فرش جلالی تبریز </h1>
+							</div>
+
+							<div class="col-md-12 align-self-center order-1">
+
+								<ul class="breadcrumb d-block text-center">
+									<li><a style="color:#d5b270" href="{% url 'jcompany:index' %}">خانه</a></li>
+									<li class="active" style="color:#d6d6d6">درباره ما</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container pb-1">
+
+					<div class="row pt-4">
+						<div class="col">
+							<div class="overflow-hidden mb-3">
+								<h2 class="word-rotator slide font-weight-bold text-7 text-sm-8 mb-0 appear-animation" data-appear-animation="maskUp">
+									<span>انتخابی اصیل برای </span>
+									<span class="word-rotator-words bg-primary">
+										<b class="is-visible">زیبایی</b>
+										<b>هنر</b>
+										<b>شکوه</b>
+									</span>
+								</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<div class="col-lg-10">
+							<div class="overflow-hidden">
+								<p class="lead mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="250">
+									مجموعه فرش جلالی با بیش از ۳۰ سال سابقه در صنعت فرش دستبافت ایرانی با بیش از 3000<span class="text-primary">محصول</span> متنوع توانسته یکی از بزرگترین تولید کنندگان و صادرکنندگان آن باشد.</p>
+							</div>
+						</div>
+						<div class="col-lg-2 appear-animation mt-3 mt-lg-0" data-appear-animation="fadeIn" data-appear-animation-delay="450">
+							<a href="{% url 'store:all-products' %}" class="btn btn-modern btn-primary mt-1">مشاهده محصولات ما!</a>
+						</div>
+					</div>
+				</div>
+				<section class="section section-default border-0 my-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="750">
+					<div class="container py-4">
+
+						<div class="row align-items-center">
+							<div class="col-md-6 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1000">
+								<div class="owl-carousel owl-theme nav-inside mb-0" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 6000, 'loop': true}">
+									<div>
+										<img alt="فرش جلالی" class="img-fluid" src="{% static 'img/01-01.jpg' %}">
+									</div>
+									<div>
+										<img alt="فرش جلالی" class="img-fluid" src="{% static 'img/01-02.jpg' %}">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="overflow-hidden mb-2">
+									<h2 class="text-color-dark font-weight-normal text-5 mb-0 pt-0 mt-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1200"><strong class="font-weight-extra-bold">معرفی</strong> ما</h2>
+								</div>
+								<p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400">شرکت تعاونی فرش و گلیم تبریز (<a href="#">فرش جلالی</a>) با سابقه درخشان در طراحی و تولید فرش دستبافت گامهای استوار و ماندگاری در این زمینه برداشته است.</p>
+								<p class="mb-0 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600">این امر با ارائه کیفیت بالای مصالح و بافت، تنوع بالا در تولید انواع <a href="{% url 'store:category-list' %}">فرش</a> ، <a href="{% url 'store:category-list' %}">تابلوفرش</a> دستبافت و همچین استفاده از طرح های استادان بزرگ و بنام این عرصه، میسر گردیده است.</p>
+							</div>
+						</div>
+
+					</div>
+				</section>
+
+				<div class="container">
+
+					<div class="row mt-5 py-3">
+						<div class="col-md-6">
+							<div class="toggle toggle-primary toggle-simple m-0" data-plugin-toggle>
+								<section class="toggle active mt-0">
+									<a class="toggle-title">چشم انداز ما</a>
+									<div class="toggle-content">
+										<p>در دنیایی که فن آوری و تکنولوژی به سرعت در حال پیشرفت و وسعت یافتن در جغرافیای مختلف است، بهره گیری از آن امری غیرقابل اجتناب می‌باشد. شرکت فرش جلالی با بهره گیری از پیشرفت علم و کیفیت بالای مصالح مفتخر است که هنر دیرین کشورمان را پویا نگاه داشته است.</p>
+									</div>
+								</section>
+								<section class="toggle">
+									<a class="toggle-title">ماموریت ما</a>
+									<div class="toggle-content">
+										<p>
+                                        برخورداری هر قشر از مردم سرزمین‌مان ایران از هنر اصیل گذشتگان؛ "هر خانه ایرانی یک فرش ایرانی"
+                                        </p>
+									</div>
+								</section>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="progress-bars mt-5 mt-md-0">
+								<div class="progress-label mb-1">
+									<span class="text-1">کیفیت</span>
+								</div>
+								<div class="progress mb-2">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="100%">
+										<span class="progress-bar-tooltip">100%</span>
+									</div>
+								</div>
+								<div class="progress-label mb-1">
+									<span class="text-1">طراحی</span>
+								</div>
+								<div class="progress mb-2">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="100%" data-appear-animation-delay="300">
+										<span class="progress-bar-tooltip">100%</span>
+									</div>
+								</div>
+								<div class="progress-label mb-1">
+									<span class="text-1">اصالت</span>
+								</div>
+								<div class="progress mb-2">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="100%" data-appear-animation-delay="600">
+										<span class="progress-bar-tooltip">100%</span>
+									</div>
+								</div>
+								<div class="progress-label mb-1">
+									<span class="text-1">کمترین قیمت</span>
+								</div>
+								<div class="progress mb-2">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="100%" data-appear-animation-delay="900">
+										<span class="progress-bar-tooltip">100%</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col py-4">
+							<hr class="solid">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8 mx-md-auto text-center">
+
+							<h2 class="text-color-dark font-weight-normal text-5 mb-2 pt-2"><strong class="font-weight-extra-bold">تاریخچه</strong> ما</h2>
+							<p>از دیروز تا به امروز</p>
+							
+							<div class="py-4 py-md-3"></div>
+
+							<section class="timeline mb-n5" id="timeline">
+								<div class="timeline-body">
+									<div class="timeline-date">
+										<h3 class="text-primary font-weight-bold">1401</h3>
+									</div>
+
+									<article class="timeline-box left text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">
+										<div class="timeline-box-arrow"></div>
+										<div class="p-2">
+											<img alt="نمایشگاه" class="img-fluid" src="{% static 'img/history/2.jpg' %}">
+											<h3 class="font-weight-bold text-3 mt-3 mb-1">نمایشگاه‌ها</h3>
+											<p class="mb-0 text-2">برگزاری نمایشگاه‌های تخصصی فرش دستبافت از 1387 تا امروز</p>
+										</div>
+									</article>
+
+									<div class="timeline-date">
+										<h3 class="text-primary font-weight-bold">1387</h3>
+									</div>
+
+									<article class="timeline-box right text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="400">
+										<div class="timeline-box-arrow"></div>
+										<div class="p-2">
+											<img alt="دفتر مرکزی" class="img-fluid" src="{% static 'img/history/markazi.jpg' %}">
+											<h3 class="font-weight-bold text-3 mt-3 mb-1">دفتر جدید</h3>
+											<p class="mb-0 text-2">دفتر شرکت تعاونی فرش و گلیم تبریز</p>
+										</div>
+									</article>
+
+									<div class="timeline-date">
+										<h3 class="text-primary font-weight-bold">1340</h3>
+									</div>
+
+									<article class="timeline-box left text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="600">
+										<div class="timeline-box-arrow"></div>
+										<div class="p-2">
+											<img alt="مظفریه" class="img-fluid" src="{% static 'img/history/manzarieh.jpg' %}">
+											<h3 class="font-weight-bold text-3 mt-3 mb-1">تاسیس</h3>
+											<p class="mb-0 text-2">فرش جلالی کار خود را از یک حجره فروش فرش آغاز نموده است</p>
+										</div>
+									</article>
+								</div>
+							</section>
+
+						</div>
+					</div>
+
+				</div>
+
+				{% comment %} <section class="section section-default border-0 my-5"> 
+					<div class="container py-4">
+
+						<div class="row">
+							<div class="col pb-4 text-center">
+								<h2 class="text-color-dark font-weight-normal text-5 mb-2 pt-2">با <strong class="font-weight-extra-bold">تیم ما</strong> آشنا شوید</h2>
+								<p></p>
+							</div>
+						</div>
+						<div class="row pb-3">
+							<div class="col-sm-6 col-lg-3 mb-5 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter">
+								<span class="thumb-info thumb-info-hide-wrapper-bg bg-transparent border-radius-0">
+									<span class="thumb-info-wrapper border-radius-0">
+										<a href="about-me.html">
+											<img src="{% static 'img/team/team-1.jpg' %}" class="img-fluid border-radius-0" alt="">
+											<span class="thumb-info-title">
+												<span class="thumb-info-inner">اسماعیل جلالی</span>
+												<span class="thumb-info-type">مدیر عامل</span>
+											</span>
+										</a>
+									</span>
+									<span class="thumb-info-caption">
+										<span class="thumb-info-caption-text"></span>
+										<span class="thumb-info-social-icons">
+											<a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>فیسبوک</span></a>
+											<a href="http://www.twitter.com"><i class="fab fa-twitter"></i><span>توییتر</span></a>
+											<a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>لینکدین</span></a>
+										</span>
+									</span>
+								</span>
+							</div>
+							<div class="col-sm-6 col-lg-3 mb-5 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="200">
+								<span class="thumb-info thumb-info-hide-wrapper-bg bg-transparent border-radius-0">
+									<span class="thumb-info-wrapper border-radius-0">
+										<a href="about-me.html">
+											<img src="{% static 'img/team/team-1.jpg' %}" class="img-fluid border-radius-0" alt="">
+											<span class="thumb-info-title">
+												<span class="thumb-info-inner">بابک مرندی</span>
+												<span class="thumb-info-type">مدیر فروش</span>
+											</span>
+										</a>
+									</span>
+									<span class="thumb-info-caption">
+										<span class="thumb-info-caption-text"></span>
+										<span class="thumb-info-social-icons">
+											<a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>فیسبوک</span></a>
+											<a href="http://www.twitter.com"><i class="fab fa-twitter"></i><span>توییتر</span></a>
+											<a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>لینکدین</span></a>
+										</span>
+									</span>
+								</span>
+							</div>
+							<div class="col-sm-6 col-lg-3 mb-5 mb-sm-0 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="400">
+								<span class="thumb-info thumb-info-hide-wrapper-bg bg-transparent border-radius-0">
+									<span class="thumb-info-wrapper border-radius-0">
+										<a href="about-me.html">
+											<img src="{% static 'img/team/600x600.jpg' %}" class="img-fluid border-radius-0" alt="">
+											<span class="thumb-info-title">
+												<span class="thumb-info-inner">هامون بامرادی</span>
+												<span class="thumb-info-type">توسعه دهنده</span>
+											</span>
+										</a>
+									</span>
+									<span class="thumb-info-caption">
+										<span class="thumb-info-caption-text"></span>
+										<span class="thumb-info-social-icons">
+											<a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>فیسبوک</span></a>
+											<a href="http://www.twitter.com"><i class="fab fa-twitter"></i><span>توییتر</span></a>
+											<a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>لینکدین</span></a>
+										</span>
+									</span>
+								</span>
+							</div>
+							<div class="col-sm-6 col-lg-3 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="600">
+								<span class="thumb-info thumb-info-hide-wrapper-bg bg-transparent border-radius-0">
+									<span class="thumb-info-wrapper border-radius-0">
+										<a href="about-me.html">
+											<img src="{% static 'img/team/team-1.jpg' %}" class="img-fluid border-radius-0" alt="">
+											<span class="thumb-info-title">
+												<span class="thumb-info-inner">گودرزی</span>
+												<span class="thumb-info-type">عکاس</span>
+											</span>
+										</a>
+									</span>
+									<span class="thumb-info-caption">
+										<span class="thumb-info-caption-text"></span>
+										<span class="thumb-info-social-icons">
+											<a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>فیسبوک</span></a>
+											<a href="http://www.twitter.com"><i class="fab fa-twitter"></i><span>توییتر</span></a>
+											<a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>لینکدین</span></a>
+										</span>
+									</span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</section> {% endcomment %}
+
+				
+			</div>
+{% endblock content %}

@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block description %}
+دسته‌بندی محصولات شرکت فرش جلالی تبریز
+{% endblock description %}
+
+{% block title %}
+دسته‌بندی محصولات | فرش جلالی تبریز
+{% endblock title %}
+
+{% load static %}
+{% block content %}
+
+
+<div role="main" class="main" style="background-color:#d5b270; padding-top:80px;">
+
+			<div class="container py-2">
+                <div class="row">
+					<div class="col">
+						<div class="tabs tabs-bottom tabs-center tabs-simple">
+							<ul class="nav nav-tabs">
+								<li class="nav-item active">
+									<a class="nav-link text-color-primary" href="#tabsNavigationSimple1" data-toggle="tab">نمایش همه دسته‌ها</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-color-primary" href="#tabsNavigationSimple2" data-toggle="tab">فرش دستبافت</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-color-primary" href="#tabsNavigationSimple3" data-toggle="tab">تابلوفرش دستبافت</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-color-primary" href="#tabsNavigationSimple4" data-toggle="tab">فرش‌های سنتی</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="tabsNavigationSimple1">
+									<div class="mt-4 pt-2">
+			                            <div class="row portfolio-list">
+                                        {% for category in category %}
+                                            {% if category.primary_cat == "carpet" %}
+                                            <div class="col-md-6 col-lg-4 isotope-item brands">
+			                            		<div class="portfolio-item">
+			                            			<a href="{% url 'store:category-products' cid=category.id %}">
+			                            				<span class="thumb-info thumb-info-lighten border-radius-0">
+			                            					<span class="thumb-info-wrapper border-radius-0">
+			                            					{% if category.cover %}
+			                            						<img src="{{ category.cover.url }}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+															{% else %}
+																<img src="{% static 'img/blank.jpg' %}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+                                                            {% endif %}
+			                            						<span class="thumb-info-title">
+			                            							<span class="thumb-info-inner">{{ category.title }}</span>
+			                            							<span class="thumb-info-type">فرش دستبافت</span>
+			                            						</span>
+			                            						<span class="thumb-info-action">
+			                            							<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+			                            						</span>
+			                            					</span>
+			                            				</span>
+			                            			</a>
+			                            		</div>
+			                            	</div>
+                                            {% elif category.primary_cat == "wallcarpet" %}
+                                            <div class="col-md-6 col-lg-4 isotope-item brands">
+			                            		<div class="portfolio-item">
+			                            			<a href="{% url 'store:category-products' cid=category.id %}">
+			                            				<span class="thumb-info thumb-info-lighten border-radius-0">
+			                            					<span class="thumb-info-wrapper border-radius-0">
+			                            					{% if category.cover %}
+			                            						<img src="{{ category.cover.url }}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+															{% else %}
+																<img src="{% static 'img/blank.jpg' %}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+                                                            {% endif %}
+			                            						<span class="thumb-info-title">
+			                            							<span class="thumb-info-inner">{{ category.title }}</span>
+			                            							<span class="thumb-info-type">تابلو فرش</span>
+			                            						</span>
+			                            						<span class="thumb-info-action">
+			                            							<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+			                            						</span>
+			                            					</span>
+			                            				</span>
+			                            			</a>
+			                            		</div>
+			                            	</div>
+                                            {% else %}
+                                            <div class="col-md-6 col-lg-4 isotope-item brands">
+			                            		<div class="portfolio-item">
+			                            			<a href="{% url 'store:category-products' cid=category.id %}">
+			                            				<span class="thumb-info thumb-info-lighten border-radius-0">
+			                            					<span class="thumb-info-wrapper border-radius-0">
+			                            					{% if category.cover %}
+			                            						<img src="{{ category.cover.url }}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+															{% else %}
+																<img src="{% static 'img/blank.jpg' %}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+                                                            {% endif %}
+                                                                <span class="thumb-info-title">
+			                            							<span class="thumb-info-inner">{{ category.title }}</span>
+			                            							<span class="thumb-info-type">گلیم فرش</span>
+			                            						</span>
+			                            						<span class="thumb-info-action">
+			                            							<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+			                            						</span>
+			                            					</span>
+			                            				</span>
+			                            			</a>
+			                            		</div>
+			                            	</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+								</div>
+								<div class="tab-pane" id="tabsNavigationSimple2">
+									<div class="mt-4 pt-2">
+			                            <div class="row portfolio-list">
+                                        {% for category in category %}
+                                            {% if category.primary_cat == "carpet" %}
+                                            <div class="col-md-6 col-lg-4 isotope-item brands">
+			                            		<div class="portfolio-item">
+			                            			<a href="{% url 'store:category-products' cid=category.id %}">
+			                            				<span class="thumb-info thumb-info-lighten border-radius-0">
+			                            					<span class="thumb-info-wrapper border-radius-0">
+                                                            {% if category.cover %}
+			                            						<img src="{{ category.cover.url }}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+															{% else %}
+																<img src="{% static 'img/blank.jpg' %}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+                                                            {% endif %}
+			                            						<span class="thumb-info-title">
+			                            							<span class="thumb-info-inner">{{ category.title }}</span>
+			                            							<span class="thumb-info-type">فرش دستبافت</span>
+			                            						</span>
+			                            						<span class="thumb-info-action">
+			                            							<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+			                            						</span>
+			                            					</span>
+			                            				</span>
+			                            			</a>
+			                            		</div>
+			                            	</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+								</div>
+								<div class="tab-pane" id="tabsNavigationSimple3">
+									<div class="mt-4 pt-2">
+			                            <div class="row portfolio-list">
+                                        {% for category in category %}
+                                            {% if category.primary_cat == "wallcarpet" %}
+                                            <div class="col-md-6 col-lg-4 isotope-item brands">
+			                            		<div class="portfolio-item">
+			                            			<a href="{% url 'store:category-products' cid=category.id %}">
+			                            				<span class="thumb-info thumb-info-lighten border-radius-0">
+			                            					<span class="thumb-info-wrapper border-radius-0">
+                                                            {% if category.cover %}
+			                            						<img src="{{ category.cover.url }}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+															{% else %}
+																<img src="{% static 'img/blank.jpg' %}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+                                                            {% endif %}
+			                            						<span class="thumb-info-title">
+			                            							<span class="thumb-info-inner">{{ category.title }}</span>
+			                            							<span class="thumb-info-type">تابلوفرش دستبافت</span>
+			                            						</span>
+			                            						<span class="thumb-info-action">
+			                            							<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+			                            						</span>
+			                            					</span>
+			                            				</span>
+			                            			</a>
+			                            		</div>
+			                            	</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+								</div>
+								<div class="tab-pane" id="tabsNavigationSimple4">
+									<div class="mt-4 pt-2">
+			                            <div class="row portfolio-list">
+                                        {% for category in category %}
+                                            {% if category.primary_cat == "kilim" %}
+                                            <div class="col-md-6 col-lg-4 isotope-item brands">
+			                            		<div class="portfolio-item">
+			                            			<a href="{% url 'store:category-products' cid=category.id %}">
+			                            				<span class="thumb-info thumb-info-lighten border-radius-0">
+			                            					<span class="thumb-info-wrapper border-radius-0">
+                                                            {% if category.cover %}
+			                            						<img src="{{ category.cover.url }}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+															{% else %}
+																<img src="{% static 'img/blank.jpg' %}" class="img-fluid border-radius-0" alt="{{ category.name }}">
+                                                            {% endif %}
+			                            						<span class="thumb-info-title">
+			                            							<span class="thumb-info-inner">{{ category.title }}</span>
+			                            							<span class="thumb-info-type">گلیم فرش</span>
+			                            						</span>
+			                            						<span class="thumb-info-action">
+			                            							<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+			                            						</span>
+			                            					</span>
+			                            				</span>
+			                            			</a>
+			                            		</div>
+			                            	</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+</div>
+{% endblock content %}

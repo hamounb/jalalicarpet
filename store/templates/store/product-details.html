@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load humanize %}
+{% block description %}
+جزئیات محصول {{ product.name }}-{{ product.code }}
+{% endblock description %}
+
+{% block title %}
+فرش جلالی تبریز | جزئیات محصول {{ product.name }}-{{ product.code }}
+{% endblock title %}
+
+{% load static %}
+{% block content %}
+<div role="main" class="main shop">
+	<section class="page-header page-header-modern page-header-md" style="background-color:#255a6c">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+
+				<div class="col">
+				</div>
+				<div class="col">
+					<div class="row">
+						<div class="col-md-12 align-self-center p-static order-2 text-center">
+							<div class="overflow-hidden pb-1 mb-n1">
+								<h1 class="text-color-light font-weight-bold text-5 appear-animation mt-1 mb-n2" data-appear-animation="maskUp" data-appear-animation-delay="100">{{ product.name }} - {{ product.code }}</h1>
+							</div>
+						</div>
+						<div class="col-md-12 align-self-center order-1">
+							<ul class="breadcrumb d-block text-center appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="300">
+								<li><a style="color:#d5b270" href="{% url 'jcompany:index' %}">خانه</a></li>
+								<li><a style="color:#d5b270" href="{% url 'store:category-products' cid=product.category.id %}">{{ product.category.title }}</a></li>
+								<li class="active" style="color:#d6d6d6">{{ product.code }}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+				</div>
+			</div>
+		</div>
+	</section>
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="owl-carousel owl-theme" data-plugin-options="{'items': 1}">
+						{% for images in images %}
+							{% if images.images %}
+						<div>
+							<a class="lightbox" href="{{ images.images.url }}" data-plugin-options="{'type':'image'}">
+								<img alt="" class="img-fluid" src="{{ images.images.url }}">
+							</a>
+						</div>
+						{% endif %}
+						{% endfor %}
+					</div>
+
+				</div>
+
+				<div class="col-lg-6">
+
+					<div class="summary entry-summary">
+
+						<h1 class="mb-2 font-weight-bold text-7">{{ product.name }}</h1>
+
+						<div class="py-1 clearfix">
+
+							<div>
+								{% if product.available  %}
+								<span class="count text-primary" itemprop="ratingCount">موجود در انبار</span> 
+								{% else %}
+								<span class="count text-danger" itemprop="ratingCount">اتمام موجودی</span> 
+								{% endif %}
+							</div>
+						</div>
+						{% if product.available %}
+							{% if product.on_sale %}
+							<p class="price">
+							<del><span class="amount text-primary">قیمت نقدی:</span> {{ product.price }} تومان</del>
+							</p>
+							<p class="price">
+							<span class="amount text-primary">قیمت با تخفیف:</span> {{ product.on_sale }} تومان
+							</p>
+							<p class="price">
+							<span class="amount text-primary">قیمت اقساطی:</span> {{ product.price_in }} تومان
+							</p>
+							{% else %}
+							<p class="price">
+								<span class="amount text-primary">قیمت نقدی:</span> {{ product.price }} تومان
+							</p>
+							<p class="price">
+								<span class="amount text-primary">قیمت اقساطی:</span> {{ product.price_in }} تومان
+							</p>
+							{% endif %}
+						{% endif %}
+
+						<p class="mb-4">{{ product.short_description }} </p>
+						{% if product.available %}
+						<button href="#" class="btn btn-primary btn-modern text-uppercase">افزودن به سبد</button>
+						{% else %}
+						<button href="#" class="btn btn-primary btn-modern text-uppercase">اتمام موجودی</button>
+						{% endif %}
+						<div class="product-meta mt-2">
+							<span class="posted-in">دسته ها: <a rel="tag" href="#">{{ product.category.title }}</a></span>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					<div class="tabs tabs-product mb-2">
+						<ul class="nav nav-tabs d-block d-sm-flex">
+							<li class="nav-item active"><a class="nav-link py-3 px-4" href="#productInfo" data-toggle="tab">اطلاعات تکمیلی</a></li>
+						</ul>
+						<div class="tab-content p-0">
+							<div class="tab-pane p-4 active" id="productInfo">
+								<table class="table m-0">
+									<tbody>
+										<tr>
+											<th class="border-top-0">
+												بافت
+											</th>
+											<td class="border-top-0">
+												{{ product.texture }}
+											</td>
+										</tr>
+										<tr>
+											<th>
+												ابعاد (متر)
+											</th>
+											<td>
+												{{ product.width }}<span class="mx-1">X</span>{{ product.length }}
+											</td>
+										</tr>
+										<tr>
+											<th>
+												رج
+											</th>
+											<td>
+												{{ product.wate }}
+											</td>
+										</tr>
+										<tr>
+											<th>
+												نقشه
+											</th>
+											<td>
+												{{ product.pattern }}
+											</td>
+										</tr>
+										<tr>
+											<th>
+												برچسب‌ها
+											</th>
+											<td>
+												{% if product.tags %}
+												{% for tag in product.tags.all %}
+												<a href="{% url 'store:tag-products' id=tag.pk %}"><span class="badge badge-sm badge-pill py-1 mr-1" style="background-color:#d5b270; color:white">{{ tag.name }}</span></a>
+												{% endfor %}
+												{% endif %}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<hr class="solid my-5">
+
+					<h4 class="mb-4"><strong>محصولات</strong> مرتبط</h4>
+					<div class="masonry-loader masonry-loader-showing">
+						<div class="row products product-thumb-info-list mt-3" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
+							{% if suggests %}
+							{% for sproduct in suggests %}
+							{% if sproduct.pk != product.pk %}
+							<div class="col-12 col-sm-6 col-lg-3 product">
+								<span class="product-thumb-info border-0">
+									<a href="shop-cart.html" class="add-to-cart-product bg-color-primary">
+										<span class="text-1">افزودن به سبد</span>
+									</a>
+									<a href="{% url 'store:product-details' code=sproduct.code %}">
+										<span class="product-thumb-info-image">
+											{% if sproduct.cover %}
+											<img alt="{{ sproduct.name }}" class="img-fluid" src="{{ sproduct.cover.url }}">
+											{% endif %}
+										</span>
+									</a>
+									<span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
+										<a href="{% url 'store:product-details' code=sproduct.code %}">
+											<h4 class="text-4 text-primary">{{ sproduct.name }}</h4>
+											<span class="price">
+												<ins><span class="amount text-dark font-weight-semibold">{{ sproduct.price }} تومان</span></ins>
+											</span>
+										</a>
+									</span>
+								</span>
+							</div>
+							{% endif %}
+							{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+</div>
+
+		
+{% endblock content %}

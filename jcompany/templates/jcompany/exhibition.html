@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% load jalali_tags %}
+{% block description %}
+نمایشگاه‌های فرش جلالی تبریز در سطح کشور
+{% endblock description %}
+
+{% block title %}
+نمایشگاه‌ها | فرش جلالی تبریز
+{% endblock title %}
+
+{% load jalali_tags %}
+{% block content %}
+<div role="main" class="main">
+
+	<section class="page-header page-header-modern page-header-md" style="background-color:#255a6c">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 align-self-center p-static order-2 text-center">
+                    <h1 class="text-color-light font-weight-bold text-5">لیست نمایشگاه‌ها</h1>
+                </div>
+
+                <div class="col-md-12 align-self-center order-1">
+
+                    <ul class="breadcrumb d-block text-center">
+                        <li><a style="color:#d5b270" href="{% url 'jcompany:index' %}">خانه</a></li>
+                        <li class="active" style="color:#d6d6d6">نمایشگاه‌ها</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	<div class="container py-2">
+
+		<div class="row">
+			<div class="col-lg-3 order-2 order-lg-1">
+				<aside class="sidebar mt-3 mt-lg-0">
+					<h5 class="font-weight-bold">بر اساس <strong>شهر</strong> </h5>
+					<ul class="nav nav-list flex-column sort-source mb-5" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
+						{% for city in city %}
+						<li class="nav-item" data-option-value="*"><a class="nav-link" href="#">{{ city.name }}</a></li>
+						{% endfor %}
+					</ul>
+					<div class="tabs tabs-dark mb-4 pb-2">
+						<ul class="nav nav-tabs">
+							<li class="nav-item active"><a class="nav-link show active text-1 font-weight-bold text-uppercase" href="#popularPosts" data-toggle="tab">محصولات ویژه</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="popularPosts">
+								<ul class="simple-post-list">
+									{% for suggest in suggests%}
+									<li>
+										<div class="post-image">
+											<div class="img-thumbnail img-thumbnail-no-borders d-block">
+												<a href="{% url 'store:product-details' code=suggest.code %}">
+													{% if suggest.cover %}
+													<img src="{{ suggest.cover.url }}" width="50" height="50" alt="{{ suggest.name }}">
+													{% endif %}
+												</a>
+											</div>
+										</div>
+										<div class="post-info">
+											<a href="{% url 'store:product-details' code=suggest.code %}">{{ suggest.name }}</a>
+											<div class="post-meta">
+												{{ suggest.on_sale }} تومان
+											</div>
+										</div>
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</aside>
+			</div>
+			<div class="col-lg-9 order-1 order-lg-2">
+
+				<div class="sort-destination-loader sort-destination-loader-showing">
+					<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+						
+						{% for ex in exhibition %}
+						<div class="col-md-6 col-lg-4 isotope-item brands">
+							<div class="portfolio-item">
+								<a href="{{ ex.cover.url }}" class="lightbox-portfolio">
+									<span class="thumb-info thumb-info-lighten border-radius-0">
+										<span class="thumb-info-wrapper border-radius-0">
+											{% if ex.cover %}
+											<img src="{{ ex.cover.url }}" class="img-fluid border-radius-0" alt="{{ ex.title }}">
+											{% endif %}
+											<span class="thumb-info-title">
+												<span class="thumb-info-inner">{{ ex.start_date|to_jalali:'%Y/%m/%d' }} الی {{ ex.end_date|to_jalali:'%Y/%m/%d' }}</span>
+											</span>
+											<span class="thumb-info-action">
+											</span>
+										</span>
+									</span>
+								</a>
+							</div>
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		{% if page_obj.has_next or page_obj.has_previous %}
+		<div class="row mt-4 mb-n3">
+			<div class="col">
+			{% if page_obj.has_next %}
+				<ul class="pagination float-right">
+				{% if page_obj.has_previous %}
+					<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+				{% endif %}
+					<li class="page-item active"><a class="page-link">{{ page_obj.number }}</a></li>
+				{% if page_obj.has_next %}
+					<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+					<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+				{% endif %}
+				</ul>
+			{% endif %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+
+</div>
+
+{% endblock content %}
