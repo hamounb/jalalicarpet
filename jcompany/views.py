@@ -15,6 +15,9 @@ from django.db.models import Q
 class IndexView(views.View):
 
     def get(self, request):
+        a = True
+        if a:
+            return render(request, 'jcompany/index1.html')
         posters = PosterModel.objects.all()
         new_blog = BlogModel.objects.all().order_by('-created_date')[:4]
         on_sale = OnSalePosterModel.objects.all().order_by("-created_date")[:1]
