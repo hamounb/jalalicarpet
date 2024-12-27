@@ -12,28 +12,28 @@
 {% block content %}
 
 
-<div role="main" class="main" style="background-color:#d5b270; padding-top:80px;">
+<div role="main" class="main" style="padding-top:40px;">
 
-			<div class="container py-2">
+			<div class="container">
                 <div class="row">
 					<div class="col">
 						<div class="tabs tabs-bottom tabs-center tabs-simple">
 							<ul class="nav nav-tabs">
-								<li class="nav-item active">
+								<li class="nav-item {% if primary == 'all' %}active{% endif %}">
 									<a class="nav-link text-color-primary" href="#tabsNavigationSimple1" data-toggle="tab">نمایش همه دسته‌ها</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item {% if primary == 'carpet' %}active{% endif %}">
 									<a class="nav-link text-color-primary" href="#tabsNavigationSimple2" data-toggle="tab">فرش دستبافت</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item {% if primary == 'wallcarpet' %}active{% endif %}">
 									<a class="nav-link text-color-primary" href="#tabsNavigationSimple3" data-toggle="tab">تابلوفرش دستبافت</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item {% if primary == 'gilim' %}active{% endif %}">
 									<a class="nav-link text-color-primary" href="#tabsNavigationSimple4" data-toggle="tab">فرش‌های سنتی</a>
 								</li>
 							</ul>
 							<div class="tab-content">
-								<div class="tab-pane active" id="tabsNavigationSimple1">
+								<div class="tab-pane {% if primary == 'all' %}active{% endif %}" id="tabsNavigationSimple1">
 									<div class="mt-4 pt-2">
 			                            <div class="row portfolio-list">
                                         {% for category in category %}
@@ -111,7 +111,7 @@
                                         </div>
                                     </div>
 								</div>
-								<div class="tab-pane" id="tabsNavigationSimple2">
+								<div class="tab-pane {% if primary == 'carpet' %}active{% endif %}" id="tabsNavigationSimple2">
 									<div class="mt-4 pt-2">
 			                            <div class="row portfolio-list">
                                         {% for category in category %}
@@ -143,7 +143,7 @@
                                         </div>
                                     </div>
 								</div>
-								<div class="tab-pane" id="tabsNavigationSimple3">
+								<div class="tab-pane {% if primary == 'wallcarpet' %}active{% endif %}" id="tabsNavigationSimple3">
 									<div class="mt-4 pt-2">
 			                            <div class="row portfolio-list">
                                         {% for category in category %}
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
 								</div>
-								<div class="tab-pane" id="tabsNavigationSimple4">
+								<div class="tab-pane {% if primary == 'gilim' %}active{% endif %}" id="tabsNavigationSimple4">
 									<div class="mt-4 pt-2">
 			                            <div class="row portfolio-list">
                                         {% for category in category %}

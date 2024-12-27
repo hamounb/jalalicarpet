@@ -19,14 +19,14 @@
         height:100px;
     }
 </style>
-			<div role="main" class="main shop py-4">
+			<div role="main" class="main shop mt-3 py-1">
 
 				<div class="container">
 
 					<div class="row">
-						<div class="col-lg-3">
-							<aside class="sidebar mb-5 mb-lg-0 pb-3 pb-lg-0">
-								<h5 class="font-weight-bold pt-4">دسته‌بندی ها<br>({{ category.title }})</h5>
+						<div class="col-lg-3 d-none d-lg-block">
+							<aside class="sidebar mb-5 mb-lg-0 pb-2 pb-lg-0">
+								<h5 class="font-weight-bold pt-2">دسته‌بندی ها<br>({{ category.title }})</h5>
 								<ul class="nav nav-list flex-column">
 									{% for cat in categories %}
 									<li class="nav-item"><a class="nav-link" href="{% url 'store:category-products' cid=cat.pk %}">{{ cat.title }}</a></li>
@@ -34,9 +34,9 @@
 								</ul>
 								<h5 class="font-weight-bold pt-5">برچسب ها</h5>
 								<div class="mb-3 pb-1">
-                                {% for tags in tags %}
+                                {% for tag in tags %}
 
-									<a href="{% url 'store:tag-products' id=tags.pk %}"><span class="badge badge-dark badge-sm badge-pill py-1 mr-1">{{ tags.name }}</span></a>
+									<a href="{% url 'store:tag-products' id=tag.pk %}"><span class="badge badge-dark badge-sm badge-pill py-1 mr-1">{{ tag.name }}</span></a>
 
 								{% endfor %}
 								</div>

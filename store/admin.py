@@ -52,6 +52,15 @@ class TextureAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.user = request.user   
         return super().save_model(request, obj, form, change)
+    
+
+@admin.register(PileModel)
+class PileAdmin(admin.ModelAdmin):
+    readonly_fields = ("user", "created_date", "modified_date")
+    
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user   
+        return super().save_model(request, obj, form, change)
 
 
 @admin.register(ProductModel)
@@ -65,13 +74,6 @@ class ProductAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.user = request.user   
         return super().save_model(request, obj, form, change)
-        
-    def delete_model(self, request, obj):
-        if obj.cover:
-            if os.path.isfile(obj.cover.path):
-                os.remove(obj.cover.path)
-                
-        super().delete_model(request, obj)
 
 
 @admin.register(ProductImageModel)
@@ -82,10 +84,3 @@ class ProductImageAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.user = request.user   
         return super().save_model(request, obj, form, change)
-        
-    def delete_model(self, request, obj):
-        if obj.images:
-            if os.path.isfile(obj.images.path):
-                os.remove(obj.images.path)
-                
-        super().delete_model(request, obj)

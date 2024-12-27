@@ -38,9 +38,9 @@
 			<div class="col-lg-3 order-2 order-lg-1">
 				<aside class="sidebar mt-3 mt-lg-0">
 					<h5 class="font-weight-bold">بر اساس <strong>شهر</strong> </h5>
-					<ul class="nav nav-list flex-column sort-source mb-5" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
+					<ul class="nav nav-list flex-column sort-source mb-5">
 						{% for city in city %}
-						<li class="nav-item" data-option-value="*"><a class="nav-link" href="#">{{ city.name }}</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'jcompany:city' cit=city.pk %}">{{ city.name }}</a></li>
 						{% endfor %}
 					</ul>
 					<div class="tabs tabs-dark mb-4 pb-2">
@@ -76,33 +76,29 @@
 				</aside>
 			</div>
 			<div class="col-lg-9 order-1 order-lg-2">
-
-				<div class="sort-destination-loader sort-destination-loader-showing">
-					<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+				{% if name %}
+				<div class="row mb-4">
+					<div class="col-lg-12">
+						<h3 class="mb-0 font-weight-bold">{{ name.name }}</h3>
+					</div>
+				</div>
+				{% endif %}
 						
 						{% for ex in exhibition %}
 						<div class="col-md-6 col-lg-4 isotope-item brands">
 							<div class="portfolio-item">
-								<a href="{{ ex.cover.url }}" class="lightbox-portfolio">
-									<span class="thumb-info thumb-info-lighten border-radius-0">
-										<span class="thumb-info-wrapper border-radius-0">
-											{% if ex.cover %}
-											<img src="{{ ex.cover.url }}" class="img-fluid border-radius-0" alt="{{ ex.title }}">
-											{% endif %}
-											<span class="thumb-info-title">
-												<span class="thumb-info-inner">{{ ex.start_date|to_jalali:'%Y/%m/%d' }} الی {{ ex.end_date|to_jalali:'%Y/%m/%d' }}</span>
-											</span>
-											<span class="thumb-info-action">
-											</span>
+								<span class="thumb-info thumb-info-hide-wrapper-bg p-1">
+									<span class="thumb-info-wrapper">
+										<img src="{{ ex.cover.url }}" class="img-fluid" alt="{{ ex.title }}-{{ ex.city.name }}" style="width:100%">
+										<span class="thumb-info-title">
+											<span class="thumb-info-inner">{{ ex.title }}</span>
+											<span class="thumb-info-type">{{ ex.start_date|to_jalali:'%Y/%m/%d' }} الی {{ ex.end_date|to_jalali:'%Y/%m/%d' }}</span>
 										</span>
 									</span>
-								</a>
+								</span>
 							</div>
 						</div>
 						{% endfor %}
-
-					</div>
-				</div>
 
 			</div>
 		</div>

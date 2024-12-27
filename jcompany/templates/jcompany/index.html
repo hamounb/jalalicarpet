@@ -4,33 +4,25 @@
 {% load jalali_tags %}
 
 {% block title %}
-
+فرش جلالی تبریز | صفحه اصلی
 {% endblock title %}
 
 {% block content %}
 
 <div role="main" class="main">
-	<div class="slider-container light rev_slider_wrapper" style="height: 650px;">
-		<div id="revolutionSlider" class="slider rev_slider" data-version="5.4.8" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 1170, 'gridheight': 650, 'disableProgressBar': 'on', 'responsiveLevels': [4096,1200,992,500], 'navigation' : {'arrows': { 'enable': true, 'style': 'arrows-style-1 arrows-big arrows-dark' }, 'bullets': {'enable': false, 'style': 'bullets-style-1 bullets-color-primary', 'h_align': 'center', 'v_align': 'bottom', 'space': 7, 'v_offset': 70, 'h_offset': 0}}}">
+	<div class="slider-container light rev_slider_wrapper">
+		<div id="revolutionSlider" class="slider rev_slider" data-version="5.4.8" data-plugin-revolution-slider data-plugin-options="{'delay': 5000, 'gridwidth': 1170, 'gridheight': 550, 'disableProgressBar': 'on', 'responsiveLevels': [4096,1200,992,500], 'navigation' : {'arrows': { 'enable': true, 'style': 'arrows-style-1 arrows-big arrows-dark' }, 'bullets': {'enable': false, 'style': 'bullets-style-1 bullets-color-primary', 'h_align': 'center', 'v_align': 'bottom', 'space': 7, 'v_offset': 70, 'h_offset': 0}}}">
 			<ul>
+				{% for poster in posters %}
+				{% if poster.image and not poster.animation %}
 				<li data-transition="fade">
 					<img 
-						src="{% static 'img/1.jpg' %}" 
-						alt="" 
+						src="{{ poster.image.url }}" 
+						alt="{{ poster.title }}" 
 						data-bgposition="center center" 
 						data-bgfit="cover" 
 						data-bgrepeat="no-repeat" 
 						class="rev-slidebg">
-
-					<div 
-						class="tp-caption" 
-						data-x="['right','right','center','center']" 
-						data-hoffset="['146','146','150','245']" 
-						data-y="center" 
-						data-voffset="['-70','-70','-70','-125']" 
-						data-start="1000" 
-						data-transform_in="x:[300%];opacity:0;s:500;" 
-						data-transform_idle="opacity:0.5;s:500;"><img src="img/slides/slide-title-border-light.png" alt=""></div>
 
 					<div 
 						class="tp-caption text-color-light font-weight-normal" 
@@ -41,25 +33,7 @@
 						data-start="700" 
 						data-fontsize="['22','22','22','40']" 
 						data-lineheight="['40','40','40','74']" 
-						data-transform_in="y:[-50%];opacity:0;s:500;">آیا به یک طراحی وب جدید</div>
-
-					<div 
-						class="tp-caption d-none d-md-block" 
-						data-frames='[{"delay":1500,"speed":500,"frame":"0","from":"opacity:0;x:-10%;","to":"opacity:1;x:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' 
-						data-x="['right','right','center','center']" 
-						data-hoffset="['384','384','-90','-165']" 
-						data-y="center" 
-						data-voffset="['-49','-49','-49','-86']"><img src="img/slides/slide-blue-line.png" alt=""></div>
-
-					<div 
-						class="tp-caption" 
-						data-x="['right','right','center','center']" 
-						data-hoffset="['452','452','-150','-245']" 
-						data-y="center" 
-						data-voffset="['-70','-70','-70','-125']" 
-						data-start="1000" 
-						data-transform_in="x:[-300%];opacity:0;s:500;" 
-						data-transform_idle="opacity:0.5;s:500;"><img src="img/slides/slide-title-border-light.png" alt=""></div>
+						data-transform_in="y:[-50%];opacity:0;s:500;">{{ poster.pre_title }}</div>
 
 					<h1 
 						class="tp-caption font-weight-extra-bold text-color-light negative-ls-2" 
@@ -69,24 +43,16 @@
 						data-voffset="['-5','-5','-5','0']" 
 						data-y="center" 
 						data-fontsize="['50','50','50','90']" 
-						data-lineheight="['55','55','55','95']">نیاز دارید؟</h1>
-
-					<div 
-						class="tp-caption font-weight-light text-color-light" 
-						data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":2000,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' 
-						data-x="['right','right','center','center']" 
-						data-hoffset="['146','146','0','0']" 
-						data-y="center" 
-						data-voffset="['60','60','60','125']" 
-						data-fontsize="['18','18','18','50']" 
-						data-lineheight="['34','34','34','100']">ویژگی ها و گزینه های ما را بررسی کنید</div>
+						data-lineheight="['55','55','55','95']">{{ poster.title }}</h1>
 					
 				</li>
+				{% endif %}
+				{% if poster.image and poster.animation %}
 				<li data-transition="fade">
 	
 					<img 
-						src="{% static 'img/2.jpg' %}" 
-						alt="" 
+						src="{{ poster.image.url }}" 
+						alt="{{ poster.title }}" 
 						data-bgposition="left center" 
 						data-bgpositionend="center center" 
 						data-bgfit="cover" 
@@ -104,100 +70,91 @@
 						class="rev-slidebg">
 	
 					<div 
-						class="tp-caption font-weight-extra-bold text-color-dark secondary-font" 
+						class="tp-caption font-weight-extra-bold text-color-light secondary-font" 
 						data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' 
 						data-x="center" 
 						data-y="center" 
 						data-voffset="['-80','-80','-80','-150']" 
 						data-fontsize="['50','50','50','90']" 
-						data-lineheight="['55','55','55','95']">طرح های بی نظیر</div>
+						data-lineheight="['55','55','55','95']">{{ poster.pre_title }}</div>
 	
 					<div 
-						class="tp-caption font-weight-light text-color-dark" 
+						class="tp-caption font-weight-light text-color-light" 
 						data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":2000,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' 
 						data-x="center" 
 						data-y="center" 
 						data-voffset="['-5','-5','-5','-5']" 
 						data-fontsize="['18','18','18','40']" 
 						data-lineheight="['34','34','34','76']" 
-						style="color: #b5b5b5;">پورتو یک موفقیت بزرگ در یکی از بزرگترین مراکز ارائه قالب در دنیاست.</div>
-	
-					<a 
-						class="tp-caption btn btn-primary font-weight-bold" 
-						href="{% url 'store:category-list' %}" 
-						data-frames='[{"delay":2000,"speed":2000,"frame":"0","from":"y:50%;opacity:0;","to":"y:0;o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' 
-						data-x="center" 
-						data-hoffset="0" 
-						data-y="center" 
-						data-voffset="['75','75','75','140']" 
-						data-paddingtop="['15','15','15','30']" 
-						data-paddingbottom="['15','15','15','30']" 
-						data-paddingleft="['40','40','40','57']" 
-						data-paddingright="['40','40','40','57']" 
-						data-fontsize="['13','13','13','25']" 
-						data-lineheight="['20','20','20','25']">هم اکنون شروع کنید <i class="fas fa-arrow-left ml-1"></i></a>
+						style="color: #b5b5b5;">{{ poster.title }}</div>
 	
 				</li>
+				{% endif %}
+				{% endfor %}
 			</ul>
 		</div>
 	</div>
-	<div class="container-fluid my-2">
-		<div class="row m-4">
-			<div class="col-lg-4 p-3">
+
+	<div class="container my-2">
+		<div class="row">
+			<div class="col-lg-4 p-2">
 				<span class="img-thumbnail d-block">
-					<a href="#">
-						<img class="img-fluid" src="{% static 'img/carpet.jpg' %}" alt="فرش دستبافت">
+					<a href="{% url 'store:category-list' pc="carpet" %}">
+						<img class="img-fluid" src="{% static 'img/FarshNafis.jpg' %}" alt="فرش دستبافت">
 					</a>
 				</span>
 			</div>
-			<div class="col-lg-4 p-3">
+			<div class="col-lg-4 p-2">
 				<span class="img-thumbnail d-block">
-					<a href="#">
-						<img class="img-fluid" src="{% static 'img/tcarpet.jpg' %}" alt="تابلو فرش دستبافت">
+					<a href="{% url 'store:category-list' pc="wallcarpet" %}">
+						<img class="img-fluid" src="{% static 'img/TabloFarsh.jpg' %}" alt="تابلو فرش دستبافت">
 					</a>
 				</span>
 			</div>
-			<div class="col-lg-4 p-3">
+			<div class="col-lg-4 p-2">
 				<span class="img-thumbnail d-block">
-					<a href="#">
-						<img class="img-fluid" src="{% static 'img/sonnati.jpg' %}" alt="فرش‌های سنتی">
+					<a href="{% url 'store:category-list' pc="gilim" %}">
+						<img class="img-fluid" src="{% static 'img/Gilim.jpg' %}" alt="فرش‌های سنتی">
 					</a>
 				</span>
 			</div>
 		</div>
 	</div>
+	
 	{% if on_sale %}
 	<section>
-		<a href="#">
-			{% for p in on_sale %}
-			{% if p %}
-			<img src="{{ p.image.url }}" alt="{{ p.subject }}" style="max-width:100%">
-			{% endif %}
-			{% endfor %}
-		</a>
+		<div class="container-fluid text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<a href="#">
+						{% for p in on_sale %}
+						{% if p %}
+						<img class="img-fluid rounded mb-4" src="{{ p.image.url }}" alt="{{ p.subject }}" style="max-width:100%">
+						{% endif %}
+						{% endfor %}
+					</a>
+				</div>
+			</div>
+		</div>
 	</section>
 	{% endif %}
 
 	{% if ex %}
-	<div class="container-fluid">
-		<h4 class="text-uppercase text-primary p-4">نمایشگاه‌ها</h4>
+	<div class="container mb-3">
+		<h4 class="text-uppercase text-primary">نمایشگاه‌ها</h4>
 		<div class="row">
 			{% for ex in ex %}
 			{% if ex %}
 			<div class="col-lg-4">
-				<a href="#">
-					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded p-4">
-						<span class="thumb-info-wrapper">
-							<img src="{{ ex.cover.url }}" class="img-fluid" alt="{{ ex.title }}-{{ ex.city.name }}" style="width:100%%">
-							<span class="thumb-info-title">
-								<span class="thumb-info-inner">{{ ex.start_date|to_jalali:'%Y/%m/%d' }} الی {{ ex.end_date|to_jalali:'%Y/%m/%d' }}</span>
-							</span>
-							<span class="thumb-info-action">
-								<span class="thumb-info-action-icon"><i class="fas fa-plus"></i></span>
-							</span>
+				<span class="thumb-info thumb-info-hide-wrapper-bg p-2">
+					<span class="thumb-info-wrapper">
+						<img src="{{ ex.cover.url }}" class="img-fluid" alt="{{ ex.title }}-{{ ex.city.name }}" style="width:100%">
+						<span class="thumb-info-title">
+							<span class="thumb-info-inner"><a class="text-light" href="{% url 'jcompany:exhibition' %}">{{ ex.title }}</a></span>
+							<span class="thumb-info-type">{{ ex.start_date|to_jalali:'%Y/%m/%d' }} الی {{ ex.end_date|to_jalali:'%Y/%m/%d' }}</span>
 						</span>
 					</span>
-				</a>
+				</span>
 			</div>
 			{% endif %}
 			{% endfor %}
@@ -228,13 +185,13 @@
 	{% endif %}
 
 	{% if new_blog %}
-	<div class="container-fluid">
-		<h4 class="text-uppercase text-primary p-4">آخرین مطالب</h4>
+	<div class="container mt-3 mb-3">
+		<h4 class="text-uppercase text-primary p-1">آخرین مطالب</h4>
 		<div class="row">
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				{% for blog in new_blog %}
 				{% if blog %}
-				<article class="post post-medium border-0 p-4 mb-5">
+				<article class="post post-medium border-0 p-2">
 					<div class="post-image">
 						<a href="blog-post.html">
 							<img src="{{ blog.cover.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="">
@@ -243,13 +200,13 @@
 
 					<div class="post-content">
 
-						<h2 class="font-weight-semibold text-5 line-height-7 mt-3 mb-2 pt-1"><a href="blog-post.html">{{ blog.title|safe|truncatewords:15 }}</a></h2>
-						<p>{{ blog.content|safe|truncatewords:30 }}</p>
+						<h2 class="font-weight-semibold text-4 line-height-5 mt-3 mb-1 pt-1"><a href="{% url 'blog:blog-details' bid=blog.pk %}">{{ blog.title|safe|truncatewords:15 }}</a></h2>
+						<p>{{ blog.content|safe|truncatewords:20 }}</p>
 
 						<div class="post-meta">
 							<span><i class="far fa-user"></i> توسط  <a href="#">{{ blog.user.first_name }} {{ blog.user.last_name }}</a> </span>
 							<span><i class="far fa-folder"></i> <a href="#">{{ blog.category.title }}</a> </span>
-							<span class="d-block mt-2 pt-1"><a href="blog-post.html" class="btn btn-block btn-primary text-3 text-uppercase">بیشتر بخوانید</a></span>
+							<span class="d-block mt-2 pt-1"><a href="{% url 'blog:blog-details' bid=blog.pk %}" class="btn btn-block btn-primary text-3 text-uppercase">بیشتر بخوانید</a></span>
 						</div>
 
 					</div>
@@ -286,17 +243,17 @@
 	<section class="bg-color-light p-5">
 		<div class="container-fluid">
 			<div class="row align-items-center justify-content-center">
-				<div class="col-lg-6 pb-4 pb-lg-0 pr-lg-5 mb-sm-5 mb-lg-0">
+				<div class="col-lg-6 pb-lg-0 pr-lg-5 mb-sm-5 mb-lg-0">
 					<h2 class="text-color-dark font-weight-normal text-6 mb-2">در مجموعه <strong class="font-weight-extra-bold">فرش جلالی</strong> چه خبر!</h2>
-					<p class="lead">بیش از ۳۰ سال تجربه در تولید و فروش دستبافته‌های اصیل ایرانی
+					<p class="lead">بیش از نیم سال تجربه در تولید و فروش دستبافته‌های اصیل ایرانی
 						موجب شده تا امروز فرش جلالی تبریز یکی از بزرگترین مجموعه‌های دستبافت کشور باشد. </p>
 					<p class="pr-5 mr-5">شما را آشنا می‌کنیم با مجموعه‌ای با بیش از 3000 محصول متفاوت که به دست هنرمندان بزرگ کشور طراحی و تولید شده‌اند.</p>
-					<a href="#" class="btn font-weight-semibold btn-px-4 btn-py-2 text-2" style="background-color:#d5b270">آشنایی بیشتر</a>
+					<a href="{% url 'store:category-list' pc="all" %}" class="btn font-weight-semibold btn-px-4 btn-py-2 text-2" style="background-color:#d5b270">آشنایی بیشتر</a>
 				</div>
 				<div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 mt-sm-5" style="top: 1.7rem;">
-					<img src="{% static 'img/generic/generic-corporate-3-1.jpg' %}" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; right: -50%;" alt="">
-					<img src="{% static 'img/generic/generic-corporate-3-2.jpg' %}" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" style="top: -33%; right: -29%;" alt="">
-					<img src="{% static 'img/generic/generic-corporate-3-3.jpg' %}" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="">
+					<img src="{% static 'img/generic/generic-1.jpg' %}" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; right: -50%;" alt="">
+					<img src="{% static 'img/generic/generic-2.jpg' %}" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" style="top: -33%; right: -29%;" alt="">
+					<img src="{% static 'img/generic/generic-3.jpg' %}" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="">
 				</div>
 			</div>
 		</div>

@@ -46,14 +46,14 @@
                     <section class="toggle active">
                         <a class="toggle-title">{{ question.question }}</a>
                         <div class="toggle-content">
-                            <p>{{ question.answer|safe }}</p>
+                            {{ question.answer|safe }}
                         </div>
                     </section>
                     {% else %}
                     <section class="toggle">
                         <a class="toggle-title">{{ question.question }}</a>
                         <div class="toggle-content">
-                            <p>{{ question.answer|safe }}</p>
+                            {{ question.answer|safe }}
                         </div>
                     </section>
                     {% endif %}

@@ -10,9 +10,10 @@ from django.core.paginator import Paginator
 
 class CategoryView(views.View):
 
-    def get(self, request):
+    def get(self, request, pc):
+        primary = pc
         category = CategoryModel.objects.all()
-        return render(request, 'store/category.html', {'category':category})
+        return render(request, 'store/category.html', {'category':category, 'primary':primary})
 
 
 class CategoryProductsView(views.View):
@@ -22,6 +23,7 @@ class CategoryProductsView(views.View):
         category = get_object_or_404(CategoryModel, pk=cid)
         categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
         sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
+        tags = TagsModel.objects.all()
         paginator = Paginator(products, 12)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -29,6 +31,7 @@ class CategoryProductsView(views.View):
             'page_obj':page_obj,
             'categories':categories,
             'sale':sale,
+            'tags':tags,
             'category':category,
         }
         return render(request, 'store/category-products.html', page_content)
@@ -179,7 +182,25 @@ class TagsView(views.View):
         tag = get_object_or_404(TagsModel, pk=id)
         tags = tag.productmodel_set.all()
         return render(request, 'store/tag-products.html', {'tags':tags, 'tag':tag})
-        
+    
+
+class HeaderSearchView(views.View):
+
+    def get(self, request):
+        form = HeaderSearchForm(request.GET)
+        products = []
+        if form.is_valid():
+            query = form.cleaned_data.get('query')
+            print(query)
+            products = ProductModel.objects.filter((Q(name__icontains=query) | Q(code__icontains=query) | Q(short_description__icontains=query)), Q(available=True))
+            print(products)
+            paginator = Paginator(products, 24)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            return render(request, 'jcompany/search.html', {'page_obj':page_obj})
+        ref = request.META['HTTP_REFERER']
+        return render(request, 'jcompany/search.html', {"results":"none"})
+
         
 # class PriceUpdateView(LoginRequiredMixin, views.View):
 #     login_url = 'login'

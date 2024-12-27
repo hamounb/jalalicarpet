@@ -97,11 +97,11 @@
 					</div>
 					<div class="header-container container-fluid">
 						<div class="header-row pt-2">
-							<div class="header-column">
+							<div class="header-column d-none d-lg-block">
 								<div class="header-row">
 									<div class="">
-										<a href="index.html">
-											<img style="width: 120px;" alt="Porto" src="{% static 'img/logos/logo.png' %}">
+										<a href="{% url 'jcompany:index' %}">
+											<img id="stickyImage" style="width: 200px; position:absolute; position-area:right" alt="Porto" src="{% static 'img/logos/logo.png' %}">
 										</a>
 									</div>
 								</div>
@@ -115,8 +115,8 @@
 								<div class="header-row pl-4 justify-content-end">
 									<ul class="header-social-icons social-icons d-sm-block social-icons-clean m-0">
 										<li class="social-icons-instagram"><a style="font-size: 1.5rem;" href="https://www.instagram.com/jalalicarpet.ir" target="_blank" title="instagram"><i style=" color: #255a6c" class="fab fa-instagram"></i></a></li>
-										<li class="social-icons-whatsapp"><a style="font-size: 1.5rem;" href="https://wa.me/989901073928" target="_blank" title="whatsapp"><i style=" color: #255a6c" class="fab fa-whatsapp"></i></a></li>
-										<li class="social-icons-telegram"><a style="font-size: 1.5rem;" href="https://t.me/JalaliCarpet_ir" target="_blank" title="telegram"><i style=" color: #255a6c" class="fab fa-telegram"></i></a></li>
+										<li class="social-icons-whatsapp"><a style="font-size: 1.5rem;" href="https://wa.me/989141196297" target="_blank" title="whatsapp"><i style=" color: #255a6c" class="fab fa-whatsapp"></i></a></li>
+										<li class="social-icons-telegram"><a style="font-size: 1.5rem;" href="https://t.me/JalaliCarpet_Marketing" target="_blank" title="telegram"><i style=" color: #255a6c" class="fab fa-telegram"></i></a></li>
 									</ul>
 								</div>
 							</div>
@@ -137,7 +137,7 @@
 															</a>
 														</li>
 														<li class="dropdown dropdown-mega">
-															<a class="dropdown-item dropdown-toggle" href="{% url 'store:category-list' %}">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'store:category-list' pc="all" %}">
 																محصولات
 															</a>
 															<ul class="dropdown-menu">
@@ -145,7 +145,7 @@
 																	<div class="dropdown-mega-content">
 																		<div class="row">
 																			<div class="col-lg-3">
-																				<span class="dropdown-mega-sub-title">فرش دستبافت</span>
+																				<span class="dropdown-mega-sub-title"><a class="px-0 text-color-dark font-weight-bold" style="font-size:1em" href="{% url 'store:category-list' pc="carpet" %}">فرش دستبافت</a></span>
 																				<ul class="dropdown-mega-sub-nav">
 																					{% for c in carpet %}
 																					<li><a class="dropdown-item" href="{% url 'store:category-products' cid=c.id %}">{{ c.title }}</a></li>
@@ -153,7 +153,7 @@
 																				</ul>
 																			</div>
 																			<div class="col-lg-3">
-																				<span class="dropdown-mega-sub-title">تایلوفرش دستبافت</span>
+																				<span class="dropdown-mega-sub-title"><a class="px-0 text-color-dark font-weight-bold" style="font-size:1em" href="{% url 'store:category-list' pc="wallcarpet" %}">تابلوفرش دستبافت</a></span>
 																				<ul class="dropdown-mega-sub-nav">
 																					{% for w in wall %}
 																					<li><a class="dropdown-item" href="{% url 'store:category-products' cid=w.id %}">{{ w.title }}</a></li>
@@ -161,7 +161,7 @@
 																				</ul>
 																			</div>
 																			<div class="col-lg-3">
-																				<span class="dropdown-mega-sub-title">فرش‌های سنتی</span>
+																				<span class="dropdown-mega-sub-title"><a class="px-0 text-color-dark font-weight-bold" style="font-size:1em" href="{% url 'store:category-list' pc="gilim" %}">فرش‌های سنتی</a></span>
 																				<ul class="dropdown-mega-sub-nav">
 																					{% for k in kilim %}
 																						<li><a class="dropdown-item" href="{% url 'store:category-products' cid=k.id %}">{{ k.title }}</a></li>
@@ -216,7 +216,7 @@
                                         <div class="header-nav-features d-none d-md-block">
                                             <div class=" header-nav-features-cart header-nav-features-cart-big d-inline-flex ml-2" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="{'top': '79px'}" data-sticky-header-style-deactive="{'top': '0'}">
                                                 <a href="#" class="header-nav-features-toggle">
-                                                    <img src="{% static 'img/icons/icon-cart-big.svg' %}" height="34" alt="" class="header-nav-top-icon-img">
+                                                    <img src="{% static 'img/icons/icon-cart-big.svg' %}" height="24" alt="" class="header-nav-top-icon-img">
                                                     
                                                 </a>
                                                 {% comment %} <div class="header-nav-features-dropdown" id="headerTopCartDropdown">
@@ -246,8 +246,31 @@
                                             </div>
                                             <div class=" header-nav-features-cart header-nav-features-cart-big d-inline-flex ml-2" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="{'top': '79px'}" data-sticky-header-style-deactive="{'top': '0'}">
                                                 <a href="#" class="header-nav-features-toggle">
-                                                    <img src="{% static 'img/icons/people.png' %}" height="34" alt="" class="header-nav-top-icon-img">
+                                                    <img src="{% static 'img/icons/people.png' %}" height="24" alt="" class="header-nav-top-icon-img">
                                                 </a>
+                                            </div>
+                                            <div class=" header-nav-features-cart header-nav-features-cart-big d-inline-flex ml-2" data-sticky-header-style="{'minResolution': 991}" data-sticky-header-style-active="{'top': '79px'}" data-sticky-header-style-deactive="{'top': '0'}">
+                    
+												<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
+													<div class="header-nav-feature header-nav-features-search d-inline-flex">
+														<a href="#" class="header-nav-features-toggle" data-focus="headerSearch"><i class="fas fa-search header-nav-top-icon" style="font-size: 1.2rem"></i></a>
+														<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed" id="headerTopSearchDropdown">
+															<form role="search" action="{% url 'store:header-search' %}" method="get">
+																{% csrf_token %}
+																<div class="simple-search input-group">
+																	{% for field in form %}
+																		{{ field }}
+																	{% endfor %}
+																	<span class="input-group-append">
+																		<button class="btn" type="submit">
+																			<i class="fa fa-search header-nav-top-icon"></i>
+																		</button>
+																	</span>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
                                             </div>
                                         </div>
 									</div>
@@ -261,7 +284,7 @@
             {% block content %}
             
             {% endblock content %}
-			<footer id="footer" class="bg-color-quaternary border-top-0">
+			<footer id="footer" class="bg-color-quaternary border-top-0 mt-0">
 							<div class="container py-4">
 								<div class="row py-5">
 									<div class="col-md-6 col-lg-4 mb-4 mb-lg-0 pb-2 pb-lg-0">
@@ -271,9 +294,10 @@
 											<strong>موفقیت!</strong> شما به لیست ایمیل ما افزوده شدید.
 										</div>
 										<div class="alert alert-danger d-none" id="newsletterError"></div>
-										<form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST" class="mr-md-4 mb-3">
+										<form id="form2" action="{% url 'jcompany:news' %}" method="post" class="mr-md-4 mb-3">
+											{% csrf_token %}
 											<div class="input-group input-group-rounded">
-												<input class="form-control form-control-sm bg-light text-left" placeholder="شماره همراه یا ایمیل" dir="ltr" name="newsletterEmail" id="newsletterEmail" type="text">
+												<input class="form-control form-control-sm bg-light text-left" placeholder="شماره همراه یا ایمیل" dir="ltr" name="text" type="text">
 												<span class="input-group-append">
 													<button class="btn btn-light text-color-dark" type="submit"><strong>برو!</strong></button>
 												</span>
@@ -296,7 +320,7 @@
 											<li class="mb-1"><i class="far fa-dot-circle text-color-light"></i><p class="m-0 text-color-light">تبریز، بازار مظفریه، پلاک19</p></li>
 											<li class="mb-1"><i class="far fa-dot-circle text-color-light"></i><p class="m-0 text-color-light">تبریز، بلوار 29بهمن، برج شهر</p></li>
 											<li class="mb-1"><i class="icon-phone icons text-color-light"></i><p class="m-0"><a class="text-color-light ltr-text" href="tel:8001234567">(+98) 41 332 48201</a></p></li>
-											<li class="mb-1"><i class="fab fa-whatsapp text-color-light"></i><p class="m-0"><a class="text-color-light ltr-text" href="tel:8001234567">(+98) 990 107 3928</a></p></li>
+											<li class="mb-1"><i class="fab fa-whatsapp text-color-light"></i><p class="m-0"><a class="text-color-light ltr-text" href="tel:8001234567">(+98) 914 119 6297</a></p></li>
 											<li class="mb-1"><i class="far fa-envelope text-color-light"></i><p class="m-0"><a class="text-color-light" href="mailto:mail@example.com">jalalicarpet.ir@gmail.com</a></p></li>
 										</ul>
 									</div>
@@ -304,8 +328,8 @@
 										<h5 class="text-3 mb-3 opacity-7 pb-1">ما را دنبال کنید</h5>
 										<div>
 											<span><a class="pl-1" href="https://www.instagram.com/jalalicarpet.ir" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color:#d5b270; font-size:1.8rem"></i></a></span>
-											<span><a class="pl-1" href="https://t.me/JalaliCarpet_ir" target="_blank" title="telegram"><i class="fab fa-telegram" style="color:#d5b270; font-size:1.8rem"></i></a></span>
-											<span><a class="pl-1" href="https://wa.me/989901073928" target="_blank" title="whatsapp"><i class="fab fa-whatsapp" style="color:#d5b270; font-size:1.8rem"></i></a></span>
+											<span><a class="pl-1" href="https://t.me/JalaliCarpet_Marketing" target="_blank" title="telegram"><i class="fab fa-telegram" style="color:#d5b270; font-size:1.8rem"></i></a></span>
+											<span><a class="pl-1" href="https://wa.me/989141196297" target="_blank" title="whatsapp"><i class="fab fa-whatsapp" style="color:#d5b270; font-size:1.8rem"></i></a></span>
 									</div>
 								</div>
 							</div>
@@ -325,7 +349,7 @@
 												<nav id="sub-menu">
 													<ul>
 														<li class="border-0"><i class="fas fa-angle-left" style="color:#d5b270"></i><a style="color:#d5b270" href="{% url 'jcompany:question' %}" class="ml-1 text-decoration-none"> سوالات متداول</a></li>
-														<li class="border-0"><i class="fas fa-angle-left" style="color:#d5b270"></i><a style="color:#d5b270" href="{% url 'store:category-list' %}" class="ml-1 text-decoration-none"> محصولات</a></li>
+														<li class="border-0"><i class="fas fa-angle-left" style="color:#d5b270"></i><a style="color:#d5b270" href="{% url 'store:category-list' pc="all" %}" class="ml-1 text-decoration-none"> محصولات</a></li>
 														<li class="border-0"><i class="fas fa-angle-left" style="color:#d5b270"></i><a style="color:#d5b270" href="#" class="ml-1 text-decoration-none"> سبد خرید</a></li>
 													</ul>
 												</nav>
@@ -369,7 +393,7 @@
   !function(){var i="CAuKA3",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
 </script>
 
-
+<script> window.addEventListener('scroll', function() { var stickyImage = document.getElementById('stickyImage'); if (window.scrollY > 100) { stickyImage.style.display = 'none'; } else { stickyImage.style.display = 'block'; } }); </script>
 					<script src="{% static 'js/theme.init.js' %}"></script>
 					{% comment %} <script src="{% static 'js/views/view.contact.js' %}"></script> {% endcomment %}
 

@@ -6,7 +6,7 @@ from .models import *
 
 @admin.register(ExibitionModel)
 class ExibitionAdmin(admin.ModelAdmin):
-    readonly_fields = ("user", "created_date", "modified_date")
+    readonly_fields = ("user", "created_date", "modified_date", "pk")
     
     def save_model(self, request, obj, form, change):
         obj.user = request.user   
@@ -74,3 +74,8 @@ class QuestionAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.user = request.user   
         return super().save_model(request, obj, form, change)
+    
+
+@admin.register(FooterNewsModel)
+class QuestionAdmin(admin.ModelAdmin):
+    readonly_fields = ("text", "created_date")

@@ -45,7 +45,7 @@
 		<div class="container">
 
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-4">
 					<div class="owl-carousel owl-theme" data-plugin-options="{'items': 1}">
 						{% for images in images %}
 							{% if images.images %}
@@ -60,7 +60,7 @@
 
 				</div>
 
-				<div class="col-lg-6">
+				<div class="col-lg-4">
 
 					<div class="summary entry-summary">
 
@@ -79,25 +79,18 @@
 						{% if product.available %}
 							{% if product.on_sale %}
 							<p class="price">
-							<del><span class="amount text-primary">قیمت نقدی:</span> {{ product.price }} تومان</del>
+							<del><span class="amount text-primary">قیمت نقدی:</span> {% if product.price %}{{ product.price|intcomma:False }}{% else %}0{% endif %} تومان</del>
 							</p>
 							<p class="price">
-							<span class="amount text-primary">قیمت با تخفیف:</span> {{ product.on_sale }} تومان
-							</p>
-							<p class="price">
-							<span class="amount text-primary">قیمت اقساطی:</span> {{ product.price_in }} تومان
+							<span class="amount text-primary">قیمت با تخفیف:</span> {% if product.on_sale %}{{ product.on_sale|intcomma:False }}{% else %}0{% endif %} تومان
 							</p>
 							{% else %}
 							<p class="price">
-								<span class="amount text-primary">قیمت نقدی:</span> {{ product.price }} تومان
-							</p>
-							<p class="price">
-								<span class="amount text-primary">قیمت اقساطی:</span> {{ product.price_in }} تومان
+								<span class="amount text-primary">قیمت نقدی:</span> {% if product.price %}{{ product.price|intcomma:False }}{% else %}0{% endif %} تومان
 							</p>
 							{% endif %}
 						{% endif %}
 
-						<p class="mb-4">{{ product.short_description }} </p>
 						{% if product.available %}
 						<button href="#" class="btn btn-primary btn-modern text-uppercase">افزودن به سبد</button>
 						{% else %}
@@ -111,64 +104,104 @@
 
 
 				</div>
+
+				<div class="col-lg-4">
+					<h4 class="card-title mb-1 text-4 font-weight-bold">اطلاعات تکمیلی</h4>
+					<div class="card">
+						<div class="card-body">
+							<table class="table m-0">
+								<tbody>
+									<tr>
+										<th class="border-top-0">
+											بافت
+										</th>
+										<td class="border-top-0">
+											{{ product.texture }}
+										</td>
+									</tr>
+									<tr>
+										<th>
+											ابعاد تکی (متر)
+										</th>
+										<td>
+											{{ product.width }}<span class="mx-1">X</span>{{ product.length }}
+										</td>
+									</tr>
+									{% if product.width_p > 0.00 and product.length_p > 0.00 %}
+										{% if product.category.primary_cat == "wallcarpet" %}
+										<tr>
+											<th>
+												ابعاد با قاب (متر)
+											</th>
+											<td>
+												{{ product.width_p }}<span class="mx-1">X</span>{{ product.length_p }}
+											</td>
+										</tr>
+										{% else %}
+										<tr>
+											<th>
+												ابعاد جفت (متر)
+											</th>
+											<td>
+												{{ product.width_p }}<span class="mx-1">X</span>{{ product.length_p }}
+											</td>
+										</tr>
+										{% endif %}
+									{% endif %}
+									<tr>
+										<th>
+											رج
+										</th>
+										<td>
+											{{ product.wate }}
+										</td>
+									</tr>
+									<tr>
+										<th>
+											نقشه
+										</th>
+										<td>
+											{{ product.pattern }}
+										</td>
+									</tr>
+									{% if product.pile %}
+									<tr>
+										<th>
+											چله
+										</th>
+										<td>
+											{{ product.pile }}
+										</td>
+									</tr>
+									{% endif %}
+									<tr>
+										<th>
+											برچسب‌ها
+										</th>
+										<td>
+											{% if product.tags %}
+											{% for tag in product.tags.all %}
+											<a href="{% url 'store:tag-products' id=tag.pk %}"><span class="badge badge-sm badge-pill py-1 mr-1" style="background-color:#d5b270; color:white">{{ tag.name }}</span></a>
+											{% endfor %}
+											{% endif %}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col">
 					<div class="tabs tabs-product mb-2">
 						<ul class="nav nav-tabs d-block d-sm-flex">
-							<li class="nav-item active"><a class="nav-link py-3 px-4" href="#productInfo" data-toggle="tab">اطلاعات تکمیلی</a></li>
+							<li class="nav-item active"><a class="nav-link py-3 px-4" href="#productInfo" data-toggle="tab">توضیحات</a></li>
 						</ul>
 						<div class="tab-content p-0">
 							<div class="tab-pane p-4 active" id="productInfo">
-								<table class="table m-0">
-									<tbody>
-										<tr>
-											<th class="border-top-0">
-												بافت
-											</th>
-											<td class="border-top-0">
-												{{ product.texture }}
-											</td>
-										</tr>
-										<tr>
-											<th>
-												ابعاد (متر)
-											</th>
-											<td>
-												{{ product.width }}<span class="mx-1">X</span>{{ product.length }}
-											</td>
-										</tr>
-										<tr>
-											<th>
-												رج
-											</th>
-											<td>
-												{{ product.wate }}
-											</td>
-										</tr>
-										<tr>
-											<th>
-												نقشه
-											</th>
-											<td>
-												{{ product.pattern }}
-											</td>
-										</tr>
-										<tr>
-											<th>
-												برچسب‌ها
-											</th>
-											<td>
-												{% if product.tags %}
-												{% for tag in product.tags.all %}
-												<a href="{% url 'store:tag-products' id=tag.pk %}"><span class="badge badge-sm badge-pill py-1 mr-1" style="background-color:#d5b270; color:white">{{ tag.name }}</span></a>
-												{% endfor %}
-												{% endif %}
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								<p>{{ product.short_description|linebreaks }}</p>
 							</div>
 						</div>
 					</div>

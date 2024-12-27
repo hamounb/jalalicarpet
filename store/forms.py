@@ -21,3 +21,7 @@ class FilterForm(forms.Form):
 
 class PriceUpdateForm(forms.Form):
     file = forms.FileField()
+
+
+class HeaderSearchForm(forms.Form):
+    query = forms.CharField(max_length=255, label="جستجو", widget=forms.TextInput(attrs={"class":"form-control text-1", "placeholder":"جستجو ..."}))

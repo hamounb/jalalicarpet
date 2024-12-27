@@ -4,8 +4,8 @@ from .views import *
 app_name = "store"
 
 urlpatterns = [
-    path('category/', CategoryView.as_view(), name='category-list'),
-    path('category/<int:cid>/', CategoryProductsView.as_view(), name='category-products'),
+    path('category/<str:pc>/', CategoryView.as_view(), name='category-list'),
+    path('products/category/<int:cid>/', CategoryProductsView.as_view(), name='category-products'),
     path('products/all/', AllProductsView.as_view(), name='all-products'),
     path('products/details/<str:code>/', ProductDetailsView.as_view(), name='product-details'),
     path('cart/add/<int:pid>/', CartAddView.as_view(), name="cartadd"),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('products/tag/<int:id>/', TagsView.as_view(), name="tag-products"),
     # path('price/', PriceUpdateView.as_view(), name='price-update'),
     path('images/delete/', ImagesDeleteView.as_view(), name='images-delete'),
+    path('search/', HeaderSearchView.as_view(), name="header-search")
 ]

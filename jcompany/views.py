@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django import views
 from .models import *
 from django.core.paginator import Paginator
 from store.models import ProductModel
-from .forms import ContactUsForm
+from .forms import ContactUsForm, FooterNewsForm
 from blog.models import BlogModel
-from store.context_processors import SearchForm
+from store.context_processors import HeaderSearchForm
 from django.db.models import Q
 
 # Create your views here.
@@ -15,7 +15,7 @@ from django.db.models import Q
 class IndexView(views.View):
 
     def get(self, request):
-        a = True
+        a = False
         if a:
             return render(request, 'jcompany/index1.html')
         posters = PosterModel.objects.all()
@@ -67,13 +67,37 @@ class ExhibitionView(views.View):
         paginator = Paginator(exhibition, 12)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        return render(request, 'jcompany/exhibition.html', {'exhibition':page_obj,'suggests':suggests, 'city':city})
+        context = {
+            'exhibition':page_obj,
+            'suggests':suggests,
+            'city':city,
+        }
+        return render(request, 'jcompany/exhibition.html', context)   
         
+
+class CityView(views.View):
+
+    def get(self, request, cit):
+        name = get_object_or_404(CityModel, pk=cit)
+        exhibition = ExibitionModel.objects.filter(city=name).order_by("-created_date")
+        suggests = ProductModel.objects.filter(on_sale__gt=0).order_by('-created_date')[:3]
+        city = CityModel.objects.all()
+        paginator = Paginator(exhibition, 12)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'name':name,
+            'exhibition':page_obj,
+            'suggests':suggests,
+            'city':city,
+        }
+        return render(request, 'jcompany/exhibition.html', context)
+
         
 class SearchView(views.View):
 
     def get(self, request):
-        form = SearchForm(request.GET)
+        form = HeaderSearchForm(request.GET)
         if form.is_valid():
             search = form.cleaned_data['search']
             return redirect('jcompany:search-resault', search=search)
@@ -95,3 +119,14 @@ class QuestionView(views.View):
     def get(self, request):
         questions = QuestionModel.objects.filter(available=True).order_by("created_date")
         return render(request, "jcompany/question.html", {"questions":questions})
+    
+
+class FooterNewsView(views.View):
+
+    def post(self , request):
+        form = FooterNewsForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data.get("text")
+            form.save()
+            return render(request, "jcompany/news.html", {"text":text})
+        return render(request, "jcompany/news.html", {"form":form})

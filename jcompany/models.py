@@ -123,3 +123,16 @@ class QuestionModel(BaseModel):
         if self.available:
             return f"{self.question} - (فعال)"
         return f"{self.question} - (غیرفعال)"
+    
+
+class FooterNewsModel(models.Model):
+    text = models.CharField(verbose_name="موبایل یا ایمیل", max_length=200, unique=True)
+    created_date = models.DateTimeField(verbose_name="تاریخ ثبت", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "خبرنامه"
+        verbose_name_plural = "خبرنامه‌ها"
+        ordering = ['-created_date']
+
+    def __str__(self):
+        return self.text

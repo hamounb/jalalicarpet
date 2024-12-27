@@ -2,6 +2,9 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+import os 
+from django.db.models.signals import post_delete 
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -95,6 +98,18 @@ class WateModel(BaseModel):
 
     def __str__(self):
         return self.name
+    
+
+class PileModel(BaseModel):
+    name = models.CharField(verbose_name="چله", max_length=100)
+    name_en = models.CharField(verbose_name="چله به انگلیسی", max_length=100, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "چله"
+        verbose_name_plural = "چله‌ها‌"
+
+    def __str__(self):
+        return self.name
 
 
 class ProductModel(BaseModel):
@@ -108,10 +123,13 @@ class ProductModel(BaseModel):
     price_d = models.CharField(verbose_name="قیمت به دلار", max_length=15, null=True, blank=True)
     width = models.DecimalField(verbose_name="اندازه عرض(متر)", decimal_places=2, max_digits=10)
     length = models.DecimalField(verbose_name="اندازه طول(متر)", decimal_places=2, max_digits=10)
+    width_p = models.DecimalField(verbose_name="اندازه عرض جفت(متر)", decimal_places=2, max_digits=10, default=0)
+    length_p = models.DecimalField(verbose_name="اندازه طول جفت(متر)", decimal_places=2, max_digits=10, default=0)
     texture = models.ForeignKey(TextureModel, on_delete=models.SET_NULL,verbose_name="بافت", null=True, blank=True)
     wate = models.ForeignKey(WateModel, on_delete=models.SET_NULL, verbose_name="رج", null=True, blank=True)
     pattern = models.ForeignKey(DesignPatternModel, on_delete=models.SET_NULL, verbose_name="نقشه", null=True, blank=True)
-    tags = models.ManyToManyField(TagsModel, verbose_name="برچسب‌ها")
+    pile = models.ForeignKey(PileModel, on_delete=models.SET_NULL, verbose_name="چله", null=True, blank=True)
+    tags = models.ManyToManyField(TagsModel, verbose_name="برچسب‌ها", blank=True)
     short_description = models.TextField(verbose_name="توضیحات کوتاه", null=True, blank=True)
     short_description_en = models.TextField(verbose_name="توضیحات انگلیسی", null=True, blank=True)
     cover = models.ImageField(verbose_name="تصویر کاور", upload_to=get_cover_path, null=True, blank=True)
@@ -125,10 +143,16 @@ class ProductModel(BaseModel):
 
     def __str__(self):
         return f"{self.name}-{str(self.code)}"
+    
+    def delete(self, *args, **kwargs):
+        if self.cover and os.path.isfile(self.cover.path): 
+            if os.path.isfile(self.cover.path): 
+                os.remove(self.cover.path)
+        super(ProductModel, self).delete(*args, **kwargs)
 
 
 class ProductImageModel(models.Model):
-    name = models.ForeignKey(ProductModel, on_delete=models.PROTECT, verbose_name="نام مدل")
+    name = models.ForeignKey(ProductModel, on_delete=models.CASCADE, verbose_name="نام مدل")
     images = models.ImageField(verbose_name="تصویر محصول", upload_to=get_image_path)
     created_date = models.DateTimeField(verbose_name='تاریخ ایجاد', auto_now_add=True)
 
@@ -138,3 +162,15 @@ class ProductImageModel(models.Model):
     
     def __str__(self):
         return self.name.code
+    
+    def delete(self, *args, **kwargs):
+        if self.images and os.path.isfile(self.images.path): 
+            if os.path.isfile(self.images.path): 
+                os.remove(self.images.path)
+        super(ProductImageModel, self).delete(*args, **kwargs)
+
+
+@receiver(post_delete, sender=ProductImageModel)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    if instance.images and os.path.isfile(instance.images.path):
+        os.remove(instance.images.path)
