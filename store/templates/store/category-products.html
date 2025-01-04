@@ -71,6 +71,16 @@
 							</aside>
 						</div>
 						<div class="col-lg-9">
+							<span class="text-3 font-weight-bolder">مرتب سازی: </span>
+
+							<a href="{% url 'store:category-products' cid=category.pk %}" class="btn btn-xs btn-outline btn-rounded {% if filter == 'all' %}btn-secondary {% else %} btn-light {% endif %}">جدیدترین</a>
+							<a href="{% url 'store:category-products-visited' cid=category.pk %}" class="btn btn-xs btn-outline btn-rounded {% if filter == 'visited' %}btn-secondary {% else %} btn-light {% endif %}">محبوب‌ترین</a>
+							<a href="{% url 'store:category-products-sale' cid=category.pk %}" class="btn btn-xs btn-outline btn-rounded {% if filter == 'sale' %}btn-secondary {% else %} btn-light {% endif %}">فروش ویژه</a>
+							<a href="{% url 'store:category-products-high' cid=category.pk %}" class="btn btn-xs btn-outline btn-rounded {% if filter == 'high' %}btn-secondary {% else %} btn-light {% endif %}">گرانترین</a>
+							<a href="{% url 'store:category-products-low' cid=category.pk %}" class="btn btn-xs btn-outline btn-rounded {% if filter == 'low' %}btn-secondary {% else %} btn-light {% endif %}">ارزانترین</a>
+							<hr style="margin: 10px 0">
+							<div class="form-row">
+							</div>
 							<div class="masonry-loader masonry-loader-showing">
 								<div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
 									{% for product in page_obj %}

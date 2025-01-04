@@ -33,6 +33,95 @@ class CategoryProductsView(views.View):
             'sale':sale,
             'tags':tags,
             'category':category,
+            'filter':'all',
+        }
+        return render(request, 'store/category-products.html', page_content)
+
+
+class CategoryProductsVisitedView(views.View):
+
+    def get(self, request, cid):
+        products = ProductModel.objects.filter(Q(category__id=cid) & Q(available=True)).order_by('-visit')
+        category = get_object_or_404(CategoryModel, pk=cid)
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
+        tags = TagsModel.objects.all()
+        paginator = Paginator(products, 12)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        page_content = {
+            'page_obj':page_obj,
+            'categories':categories,
+            'sale':sale,
+            'tags':tags,
+            'category':category,
+            'filter':'visited',
+        }
+        return render(request, 'store/category-products.html', page_content)
+
+
+class CategoryProductsSaleView(views.View):
+
+    def get(self, request, cid):
+        products = ProductModel.objects.filter(Q(category__id=cid) & Q(available=True)).order_by('-on_sale')
+        category = get_object_or_404(CategoryModel, pk=cid)
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
+        tags = TagsModel.objects.all()
+        paginator = Paginator(products, 12)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        page_content = {
+            'page_obj':page_obj,
+            'categories':categories,
+            'sale':sale,
+            'tags':tags,
+            'category':category,
+            'filter':'sale',
+        }
+        return render(request, 'store/category-products.html', page_content)
+
+
+class CategoryProductsHighView(views.View):
+
+    def get(self, request, cid):
+        products = ProductModel.objects.filter(Q(category__id=cid) & Q(available=True)).order_by('-price')
+        category = get_object_or_404(CategoryModel, pk=cid)
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
+        tags = TagsModel.objects.all()
+        paginator = Paginator(products, 12)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        page_content = {
+            'page_obj':page_obj,
+            'categories':categories,
+            'sale':sale,
+            'tags':tags,
+            'category':category,
+            'filter':'high',
+        }
+        return render(request, 'store/category-products.html', page_content)
+
+
+class CategoryProductsLowView(views.View):
+
+    def get(self, request, cid):
+        products = ProductModel.objects.filter(Q(category__id=cid) & Q(available=True)).order_by('price')
+        category = get_object_or_404(CategoryModel, pk=cid)
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
+        tags = TagsModel.objects.all()
+        paginator = Paginator(products, 12)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        page_content = {
+            'page_obj':page_obj,
+            'categories':categories,
+            'sale':sale,
+            'tags':tags,
+            'category':category,
+            'filter':'low',
         }
         return render(request, 'store/category-products.html', page_content)
         

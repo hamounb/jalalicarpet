@@ -95,8 +95,8 @@
 		</div>
 	</div>
 
-	<div class="container my-2">
-		<div class="row">
+	<div class="container-fluid my-2">
+		<div class="row p-3">
 			<div class="col-lg-4 p-2">
 				<span class="img-thumbnail d-block">
 					<a href="{% url 'store:category-list' pc="carpet" %}">
@@ -140,12 +140,12 @@
 	{% endif %}
 
 	{% if ex %}
-	<div class="container mb-3">
-		<h4 class="text-uppercase text-primary">نمایشگاه‌ها</h4>
-		<div class="row">
+	<div class="container-fluid mb-3">
+		<h4 class="text-uppercase text-primary px-3">نمایشگاه‌ها</h4>
+		<div class="row p-3">
 			{% for ex in ex %}
 			{% if ex %}
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 				<span class="thumb-info thumb-info-hide-wrapper-bg p-2">
 					<span class="thumb-info-wrapper">
 						<img src="{{ ex.cover.url }}" class="img-fluid" alt="{{ ex.title }}-{{ ex.city.name }}" style="width:100%">
@@ -185,10 +185,10 @@
 	{% endif %}
 
 	{% if new_blog %}
-	<div class="container mt-3 mb-3">
-		<h4 class="text-uppercase text-primary p-1">آخرین مطالب</h4>
-		<div class="row">
-			<div class="col-lg-4">
+	<div class="container-fluid mt-3 mb-3">
+		<h4 class="text-uppercase text-primary px-3">آخرین مطالب</h4>
+		<div class="row p-3">
+			<div class="col-lg-3">
 				{% for blog in new_blog %}
 				{% if blog %}
 				<article class="post post-medium border-0 p-2">

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'jalali_date',
     'django_ckeditor_5',
     'django.contrib.humanize',
+    'accounts.apps.AccountsConfig',
     'store.apps.StoreConfig',
     'jcompany.apps.JcompanyConfig',
     'blog.apps.BlogConfig',
@@ -192,7 +193,7 @@ customColorPalette = [
 
 CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
+        'toolbar': ['heading', '|', 'bold', 'italic', 'alignment', 'link',
                     'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
 
     },
@@ -204,7 +205,7 @@ CKEDITOR_5_CONFIGS = {
             '|',
             'blockQuote',
         ],
-        'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+        'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'alignment', 'link', 'underline', 'strikethrough',
         'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
                     'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',

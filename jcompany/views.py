@@ -21,7 +21,7 @@ class IndexView(views.View):
         posters = PosterModel.objects.all()
         new_blog = BlogModel.objects.all().order_by('-created_date')[:4]
         on_sale = OnSalePosterModel.objects.all().order_by("-created_date")[:1]
-        ex = ExibitionModel.objects.all().order_by('-start_date')[:3]
+        ex = ExibitionModel.objects.all().order_by('-start_date')[:4]
         video = VideoModel.objects.all().order_by('-created_date')[:3]
         customer_video = CustomerVideoModel.objects.all().order_by("-created_date")[:3]
         page_content = {
