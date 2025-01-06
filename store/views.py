@@ -280,9 +280,7 @@ class HeaderSearchView(views.View):
         products = []
         if form.is_valid():
             query = form.cleaned_data.get('query')
-            print(query)
             products = ProductModel.objects.filter((Q(name__icontains=query) | Q(code__icontains=query) | Q(short_description__icontains=query)), Q(available=True))
-            print(products)
             paginator = Paginator(products, 24)
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
