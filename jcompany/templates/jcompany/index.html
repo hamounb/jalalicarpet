@@ -58,7 +58,7 @@
 						data-bgfit="cover" 
 						data-bgrepeat="no-repeat" 
 						data-kenburns="on" 
-						data-duration="9000" 
+						data-duration="8000" 
 						data-ease="Linear.easeNone" 
 						data-scalestart="110" 
 						data-scaleend="100" 
@@ -97,24 +97,31 @@
 
 	<div class="container-fluid my-2">
 		<div class="row p-3">
-			<div class="col-lg-4 p-2">
+			<div class="col-6 col-lg-3 p-1">
 				<span class="img-thumbnail d-block">
 					<a href="{% url 'store:category-list' pc="carpet" %}">
 						<img class="img-fluid" src="{% static 'img/FarshNafis.jpg' %}" alt="فرش دستبافت">
 					</a>
 				</span>
 			</div>
-			<div class="col-lg-4 p-2">
+			<div class="col-6 col-lg-3 p-1">
 				<span class="img-thumbnail d-block">
 					<a href="{% url 'store:category-list' pc="wallcarpet" %}">
 						<img class="img-fluid" src="{% static 'img/TabloFarsh.jpg' %}" alt="تابلو فرش دستبافت">
 					</a>
 				</span>
 			</div>
-			<div class="col-lg-4 p-2">
+			<div class="col-6 col-lg-3 p-1">
 				<span class="img-thumbnail d-block">
 					<a href="{% url 'store:category-list' pc="gilim" %}">
 						<img class="img-fluid" src="{% static 'img/Gilim.jpg' %}" alt="فرش‌های سنتی">
+					</a>
+				</span>
+			</div>
+			<div class="col-6 col-lg-3 p-1">
+				<span class="img-thumbnail d-block">
+					<a href="{% url 'store:category-list' pc="carpet" %}">
+						<img class="img-fluid" src="{% static 'img/FarshLux.jpg' %}" alt="فرش دستبافت">
 					</a>
 				</span>
 			</div>
@@ -145,8 +152,8 @@
 		<div class="row p-3">
 			{% for ex in ex %}
 			{% if ex %}
-			<div class="col-lg-3">
-				<span class="thumb-info thumb-info-hide-wrapper-bg p-2">
+			<div class="col-12 col-lg-3">
+				<span class="thumb-info thumb-info-hide-wrapper-bg p-1">
 					<span class="thumb-info-wrapper">
 						<img src="{{ ex.cover.url }}" class="img-fluid" alt="{{ ex.title }}-{{ ex.city.name }}" style="width:100%">
 						<span class="thumb-info-title">
@@ -191,7 +198,7 @@
 			<div class="col-lg-3">
 				{% for blog in new_blog %}
 				{% if blog %}
-				<article class="post post-medium border-0 p-2">
+				<article class="post post-medium border-0 p-1">
 					<div class="post-image">
 						<a href="blog-post.html">
 							<img src="{{ blog.cover.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="">

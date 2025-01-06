@@ -9,8 +9,8 @@ class FilterForm(forms.Form):
     DEF = "def"
     CHOICES = (
         (DEF, "جدیدترین‌ها"),
-        (LTH, "کم به زیاد"),
-        (HTL, "زیاد به کم"),
+        (LTH, "ارزانترین‌ها"),
+        (HTL, "گرانترین‌ها"),
         (FAV, "محبوب‌ترین‌ها"),
     )
 

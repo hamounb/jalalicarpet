@@ -44,15 +44,15 @@ class AboutUsView(views.View):
 class ContactUsView(views.View):
 
     def get(self, request):
-        form = ContactUsForm()
-        return render(request, 'jcompany/contact-us.html', {'form':form})
+        form_c = ContactUsForm()
+        return render(request, 'jcompany/contact-us.html', {'form_c':form_c})
 
     def post(self, request):
-        form = ContactUsForm(request.POST)
-        if form.is_valid():
-            form.save()
+        form_c = ContactUsForm(request.POST)
+        if form_c.is_valid():
+            form_c.save()
             return render(request, 'jcompany/message-success.html')
-        return render(request, 'jcompany/contact-us.html', {'form':form})
+        return render(request, 'jcompany/contact-us.html', {'form_c':form_c})
 
 
 class ExhibitionView(views.View):
