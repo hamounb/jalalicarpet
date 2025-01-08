@@ -129,14 +129,14 @@ class CategoryProductsLowView(views.View):
 class AllProductsView(views.View):
 
     def get(self, request):
-        form = FilterForm(request.GET)
+        form_f = FilterForm(request.GET)
         on_sale = ProductModel.objects.filter(on_sale__gt=0)[:3]
         tags = TagsModel.objects.all()
         products = ""
-        if form.is_valid():
-            wate = form.cleaned_data["wate"]
-            pattern = form.cleaned_data["pattern"]
-            price = form.cleaned_data["price"]
+        if form_f.is_valid():
+            wate = form_f.cleaned_data["wate"]
+            pattern = form_f.cleaned_data["pattern"]
+            price = form_f.cleaned_data["price"]
             if wate and pattern:
                 products = ProductModel.objects.filter(Q(wate__in=wate) & Q(pattern__in=pattern)).order_by('available', '-created_date')
                 if price == "lth":
@@ -152,7 +152,7 @@ class AllProductsView(views.View):
                     'page_obj':page_obj,
                     'sale':on_sale,
                     'tags':tags,
-                    'form':form,
+                    'form_f':form_f,
                 }
                 return render(request, 'store/all-products.html', page_content)
             elif not wate and not pattern:
@@ -170,7 +170,7 @@ class AllProductsView(views.View):
                     'page_obj':page_obj,
                     'sale':on_sale,
                     'tags':tags,
-                    'form':form,
+                    'form_f':form_f,
                 }
                 return render(request, 'store/all-products.html', page_content)
             else:
@@ -188,7 +188,7 @@ class AllProductsView(views.View):
                     'page_obj':page_obj,
                     'sale':on_sale,
                     'tags':tags,
-                    'form':form,
+                    'form_f':form_f,
                 }
                 return render(request, 'store/all-products.html', page_content)
         else:
@@ -200,7 +200,7 @@ class AllProductsView(views.View):
                 'page_obj':page_obj,
                 'sale':on_sale,
                 'tags':tags,
-                'form':form,
+                'form_f':form_f,
             }
             return render(request, 'store/all-products.html', page_content)
 

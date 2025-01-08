@@ -31,7 +31,7 @@
 								<form id="checkbox-form" method="get">
 									{% csrf_token %}
 								<ul class="nav flex-column">
-									<li class="nav-item pb-2">{{ form.price }}</li>
+									<li class="nav-item pb-2">{{ form_f.price }}</li>
 									<li class="nav-item pb-2">
 										<div class="accordion without-bg" id="accordion7">
 											<div class="card card-default">
@@ -45,7 +45,7 @@
 												</div>
 												<div id="collapse7One" class="collapse">
 													<div class="card-body">
-														{{ form.pattern }}
+														{{ form_f.pattern }}
 													</div>
 												</div>
 											</div>
@@ -63,7 +63,7 @@
 												</div>
 												<div id="collapse7Two" class="collapse">
 													<div class="card-body">
-														{{ form.wate }}
+														{{ form_f.wate }}
 													</div>
 												</div>
 											</div>
