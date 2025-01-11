@@ -97,7 +97,99 @@
 					</div>
 					<div class="header-container container-fluid">
 						<div class="header-row">
-							<div class="header-column justify-content-start w-50 order-md-1 d-none d-md-flex">
+							<div class="header-column justify-content-start w-50 order-1 order-md-1 d-lg-none">
+								<div class="header-row justify-content-start">
+									<div class="header-nav p-0">
+										<div class="header-nav header-nav-links justify-content-lg-center">
+											<div class="header-nav-main header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-dropdown-arrow header-nav-main-dropdown-center header-nav-main-dropdown-center-bottom header-nav-main-effect-3 header-nav-main-sub-effect-1">
+												<nav class="collapse">
+													<ul class="nav nav-pills flex-column flex-lg-row" id="mainNav">
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle active" href="{% url 'jcompany:index' %}">
+																صفحه اصلی
+															</a>
+														</li>
+														<li class="dropdown dropdown-mega">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'store:category-list' pc="all" %}">
+																محصولات
+															</a>
+															<ul class="dropdown-menu">
+																<li>
+																	<div class="dropdown-mega-content">
+																		<div class="row">
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title"><a class="px-0 text-color-dark font-weight-bold" style="font-size:1em" href="{% url 'store:category-list' pc="carpet" %}">فرش دستبافت</a></span>
+																				<ul class="dropdown-mega-sub-nav">
+																					{% for c in carpet %}
+																					<li><a class="dropdown-item" href="{% url 'store:category-products' cid=c.id %}">{{ c.title }}</a></li>
+																					{% endfor %}
+																				</ul>
+																			</div>
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title"><a class="px-0 text-color-dark font-weight-bold" style="font-size:1em" href="{% url 'store:category-list' pc="wallcarpet" %}">تابلوفرش دستبافت</a></span>
+																				<ul class="dropdown-mega-sub-nav">
+																					{% for w in wall %}
+																					<li><a class="dropdown-item" href="{% url 'store:category-products' cid=w.id %}">{{ w.title }}</a></li>
+																					{% endfor %}
+																				</ul>
+																			</div>
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title"><a class="px-0 text-color-dark font-weight-bold" style="font-size:1em" href="{% url 'store:category-list' pc="gilim" %}">فرش‌های سنتی</a></span>
+																				<ul class="dropdown-mega-sub-nav">
+																					{% for k in kilim %}
+																						<li><a class="dropdown-item" href="{% url 'store:category-products' cid=k.id %}">{{ k.title }}</a></li>
+																					{% endfor %}							
+																				</ul>
+																			</div>
+																			<div class="col-lg-3">
+																				<span class="dropdown-mega-sub-title">سایر</span>
+																				<ul class="dropdown-mega-sub-nav">
+																					<li><a class="dropdown-item" href="{% url 'store:all-products' %}">همه محصولات</a></li>
+																					<li><a class="dropdown-item" href="#">ویژه</a></li>
+																					<li><a class="dropdown-item" href="#">سایر </a></li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+															</ul>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="#">
+																فروش ویژه
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'jcompany:exhibition' %}">
+																نمایشگاه‌ها
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="#">
+																باشگاه مشتریان
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'jcompany:question' %}">
+																سوالات متداول
+															</a>
+														</li>
+														<li class="dropdown">
+															<a class="dropdown-item dropdown-toggle" href="{% url 'blog:blog' %}">
+																بلاگ
+															</a>
+														</li>
+													</ul>
+												</nav>
+											</div>
+											<button class="btn header-btn-collapse-nav mt-n2 m-0" data-toggle="collapse" data-target=".header-nav-main nav">
+												<i class="fas fa-bars"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-start w-50 order-1 order-md-1 d-none d-lg-flex">
 								<div class="header-row">
 									<ul class="header-extra-info">
 										<li class="m-0">
@@ -122,7 +214,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="header-column justify-content-start justify-content-md-center order-1 order-md-2">
+							<div class="header-column justify-content-center justify-content-md-center order-2 order-md-2 d-none d-lg-flex">
 								<div class="header-row">
 									<div class="header-logo">
 										<a href="{% url 'jcompany:index' %}">
@@ -131,7 +223,16 @@
 									</div>
 								</div>
 							</div>
-							<div class="header-column justify-content-end w-50 order-2 order-md-3">
+							<div class="header-column justify-content-center justify-content-md-center order-2 order-md-2 d-lg-none">
+								<div class="header-row">
+									<div class="">
+										<a href="{% url 'jcompany:index' %}">
+											<img alt="فرش جلالی تبریز" width="104" height="60" data-sticky-width="87" data-sticky-height="50" src="{% static 'img/logos/Header - 2.jpg' %}">
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-end w-50 order-3 order-md-3">
 								<div class="header-row">
 									<ul class="header-extra-info">
 										<li class="m-0">
@@ -162,10 +263,10 @@
 										</li>
 										<li class="m-0">
 											<div class="feature-box reverse-allres feature-box-style-2 align-items-center">
-												<div class="feature-box-icon d-none d-md-block">
+												<div class="feature-box-icon d-none d-lg-flex">
 													<a href="#"><i class="fas fa-user-alt text-4 p-relative"></i></a>
 												</div>
-												<div class="feature-box-icon d-none d-md-block">
+												<div class="feature-box-icon d-none d-lg-flex">
 													<div class="header-nav-features header-nav-features-no-border p-0 m-0">
 														<div class="header-nav-feature header-nav-features-cart d-inline-flex ml-2">
 															<a href="#" class="header-nav-features-toggle">
@@ -205,7 +306,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="header-nav-bar header-nav-bar-top-border">
+					<div class="header-nav-bar header-nav-bar-top-border d-none d-lg-flex">
 						<div class="header-container container">
 							<div class="header-row">
 								<div class="header-column">
@@ -293,9 +394,6 @@
 														</ul>
 													</nav>
 												</div>
-												<button class="btn header-btn-collapse-nav mt-n2" data-toggle="collapse" data-target=".header-nav-main nav">
-													<i class="fas fa-bars"></i>
-												</button>
 											</div>
 										</div>
 									</div>
