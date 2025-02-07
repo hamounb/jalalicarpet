@@ -107,7 +107,25 @@
 														<ins><span class="amount text-dark font-weight-semibold">{{ product.on_sale|intcomma:False }} تومان</span></ins>
 													</span>
 												</a>
+												<button type="button" class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target="#noAnimModal">خرید</button>
 											</span>
+											<div class="modal" id="noAnimModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h4 class="modal-title" id="noAnimModalLabel">استعلام و خرید</h4>
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+														</div>
+														<div class="modal-body">
+															<a href="https://wa.me/989141196297" target="_blank" class="mb-1 mt-1 mr-1 btn btn-primary"><i class="fab fa-whatsapp"></i> واتس آپ</a>
+															<a href="tel:+989141196297" target="_blank" class="mb-1 mt-1 mr-1 btn btn-primary"><i class="fas fa-phone"></i> تماس مستقیم</a>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-light" data-dismiss="modal">بستن</button>
+														</div>
+													</div>
+												</div>
+											</div>
 										</span>
 									</div>
 									{% else %}
@@ -132,7 +150,25 @@
 														{% endif %}
 													</span>
 												</a>
+												<button type="button" class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target="#noAnimModal">خرید</button>
 											</span>
+											<div class="modal" id="noAnimModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h4 class="modal-title" id="noAnimModalLabel">استعلام و خرید</h4>
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+														</div>
+														<div class="modal-body">
+															<a href="https://wa.me/989141196297" target="_blank" class="mb-1 mt-1 mr-1 btn btn-primary"><i class="fab fa-whatsapp"></i> واتس آپ</a>
+															<a href="tel:+989141196297" target="_blank" class="mb-1 mt-1 mr-1 btn btn-primary"><i class="fas fa-phone"></i> تماس مستقیم</a>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-light" data-dismiss="modal">بستن</button>
+														</div>
+													</div>
+												</div>
+											</div>
 										</span>
 									</div>
 									{% endif %}
