@@ -116,7 +116,6 @@
 											<li class="page-item active"><a class="page-link">{{ page_obj.number }}</a></li>
 										{% if page_obj.has_next %}
 											<li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-											<li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
 										{% endif %}
 										</ul>
 									</div>
