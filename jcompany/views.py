@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django import views
 from .models import *
 from django.core.paginator import Paginator
-from store.models import ProductModel
+from store.models import ProductModel, CategoryModel
 from .forms import ContactUsForm, FooterNewsForm
 from blog.models import BlogModel
 from store.context_processors import HeaderSearchForm
@@ -19,6 +19,10 @@ class IndexView(views.View):
         if a:
             return render(request, 'jcompany/index1.html')
         posters = PosterModel.objects.all()
+        try:
+            lux = CategoryModel.objects.get(title__contains='کلکسیونی')
+        except CategoryModel.DoesNotExist:
+            lux = ""
         new_blog = BlogModel.objects.all().order_by('-created_date')[:4]
         on_sale = OnSalePosterModel.objects.all().order_by("-created_date")[:1]
         ex = ExibitionModel.objects.all().order_by('-start_date')[:4]
@@ -31,6 +35,7 @@ class IndexView(views.View):
             'ex':ex,
             'video':video,
             'customer_video':customer_video,
+            'lux':lux,
         }
         return render(request, 'jcompany/index.html', page_content)
     

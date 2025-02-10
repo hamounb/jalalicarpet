@@ -39,6 +39,7 @@ class CategoryModel(BaseModel):
         (WALLCARPET, "تابلو‌فرش دستبافت"),
         (KILIM, "فرش‌های سنتی")
     )
+    number = models.IntegerField(verbose_name="ترتیب نمایش", default=0)
     title = models.CharField(verbose_name="نام دسته‌بندی", max_length=50)
     title_en = models.CharField(verbose_name="نام انگلیسی دسته‌بندی", max_length=50, null=True, blank=True)
     primary_cat = models.CharField(verbose_name="دسته اصلی", max_length=50, choices=C_CHOICES, default=CARPET)
@@ -119,6 +120,7 @@ class ProductModel(BaseModel):
     name_en = models.CharField(verbose_name="نام مدل به انگلیسی", max_length=150, null=True, blank=True)
     code = models.CharField(verbose_name="کد فرش", max_length=20, unique=True)
     price = models.CharField(verbose_name="قیمت", max_length=15, null=True, blank=True, validators=[is_number])
+    on_sale = models.CharField(verbose_name="قیمت باتخفیف",max_length=15, null=True, blank=True, validators=[is_number])
     price_in = models.CharField(verbose_name="قیمت اقساطی", max_length=15, null=True, blank=True, validators=[is_number])
     price_d = models.CharField(verbose_name="قیمت به دلار", max_length=15, null=True, blank=True)
     width = models.DecimalField(verbose_name="اندازه عرض(متر)", decimal_places=2, max_digits=10)
@@ -133,7 +135,6 @@ class ProductModel(BaseModel):
     short_description = models.TextField(verbose_name="توضیحات کوتاه", null=True, blank=True)
     short_description_en = models.TextField(verbose_name="توضیحات انگلیسی", null=True, blank=True)
     cover = models.ImageField(verbose_name="تصویر کاور", upload_to=get_cover_path, null=True, blank=True)
-    on_sale = models.CharField(verbose_name="قیمت باتخفیف",max_length=15, null=True, blank=True, validators=[is_number])
     visit = models.IntegerField(verbose_name="تعداد بازدید", default=0)
 
     class Meta:

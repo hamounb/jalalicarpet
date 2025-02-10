@@ -111,13 +111,15 @@
 					</a>
 				</span>
 			</div>
+			{% if lux %}
 			<div class="col-6 col-lg-3 p-1">
 				<span class="img-thumbnail d-block">
-					<a href="{% url 'store:category-list' pc="carpet" %}">
+					<a href="{% url 'store:category-products' cid=lux.pk %}">
 						<img class="img-fluid" src="{% static 'img/FarshLux.jpg' %}" alt="فرش دستبافت لوکس">
 					</a>
 				</span>
 			</div>
+			{% endif %}
 			<div class="col-6 col-lg-3 p-1">
 				<span class="img-thumbnail d-block">
 					<a href="{% url 'store:category-list' pc="gilim" %}">

@@ -12,6 +12,8 @@ class ProductImageInline(admin.TabularInline):
 @admin.register(CategoryModel)
 class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ("user", "created_date", "modified_date")
+    list_display = ('primary_cat', 'title', 'number')
+    ordering = ('primary_cat', 'number')
     
     def save_model(self, request, obj, form, change):
         obj.user = request.user   
@@ -68,7 +70,7 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline]
     readonly_fields = ("user", "created_date", "modified_date", "visit")
     search_fields = ('code',)
-    list_display = ["code", "price", "price_in", "available"]
+    list_display = ["code", "price", "on_sale", "available"]
     list_filter = ["available", "on_sale"]
     
     def save_model(self, request, obj, form, change):

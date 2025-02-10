@@ -7,9 +7,9 @@ from jcompany.forms import FooterNewsForm
 def menu(request):
     form = HeaderSearchForm()
     form2 = FooterNewsForm()
-    category_c = CategoryModel.objects.filter(primary_cat="carpet")
-    category_w = CategoryModel.objects.filter(primary_cat="wallcarpet")
-    category_k = CategoryModel.objects.filter(primary_cat="kilim")
+    category_c = CategoryModel.objects.filter(primary_cat="carpet").order_by("number")
+    category_w = CategoryModel.objects.filter(primary_cat="wallcarpet").order_by("number")
+    category_k = CategoryModel.objects.filter(primary_cat="kilim").order_by("number")
     blog = BlogModel.objects.all().order_by('-created_date')[:3]
     blog_en = BlogEnModel.objects.all().order_by('-created_date')[:3]
     cart = request.session.get('cart', {})

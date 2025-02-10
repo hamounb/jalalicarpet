@@ -18,7 +18,7 @@
 		<meta name="author" content="jalalicarpet.com">
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+		<link rel="shortcut icon" href="{% static 'img/logos/Logo Small.jpg' %}" type="image/x-icon">
 		
 
 		<!-- Mobile Metas -->
@@ -351,14 +351,6 @@
 																						{% for k in kilim %}
 																							<li><a class="dropdown-item" href="{% url 'store:category-products' cid=k.id %}">{{ k.title }}</a></li>
 																						{% endfor %}							
-																					</ul>
-																				</div>
-																				<div class="col-lg-3">
-																					<span class="dropdown-mega-sub-title">سایر</span>
-																					<ul class="dropdown-mega-sub-nav">
-																						<li><a class="dropdown-item" href="{% url 'store:all-products' %}">همه محصولات</a></li>
-																						<li><a class="dropdown-item" href="#">ویژه</a></li>
-																						<li><a class="dropdown-item" href="#">سایر </a></li>
 																					</ul>
 																				</div>
 																			</div>
