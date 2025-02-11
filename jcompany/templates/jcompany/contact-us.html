@@ -15,7 +15,7 @@
 				<div class="container mt-2">
 
 					<div class="row py-4">
-						<div class="col-lg-6">
+						<div class="col-lg-6 d-none d-lg-block">
 
 							<div class="overflow-hidden mb-1">
 								<h2 class="font-weight-normal text-7 mt-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="200"><strong class="font-weight-extra-bold">تماس</strong> با ما</h2>
@@ -70,6 +70,7 @@
 								<h4 class="mt-2 mb-1"><strong>فروشگاه</strong> ما</h4>
 								<ul class="list list-icons list-icons-style-2 mt-2">
 									<li class="line-height-9"><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">آدرس:</strong> تبریز، بازارمظفریه، پلاک۱۹ </li>
+									<li class="line-height-9"><i class="fas fa-phone top-6"></i> <strong class="text-dark">تلفن:</strong> <span class="ltr-text">09141161890-09141196297</span></li>
 								</ul>
 							</div>
 
@@ -102,6 +103,55 @@
 
 							<h4 class="pt-5"><strong>ارتباط</strong> با ما</h4>
 							<p class="lead mb-0 text-1rem">شما می‌توانید از طریق شماره، آدرس ایمیل و صفحه شبکه‌های اجتماعی با ما در ارتباط باشید.</p>
+
+						</div>
+						<div class="col-lg-6 col d-lg-none">
+
+							<div class="overflow-hidden mb-1">
+								<h2 class="font-weight-normal text-7 mt-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="200"><strong class="font-weight-extra-bold">تماس</strong> با ما</h2>
+							</div>
+							<div class="overflow-hidden mb-4 pb-3">
+								<p class="mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">فرم زیر را پر کنید تا با شما تماس بگیریم</p>
+							</div>
+
+							<form class="contact-form mb-5 mb-lg-0" method="POST">
+                                <div class="contact-form-success alert alert-success d-none mt-4">
+									<strong>موفقیت!</strong> پیام شما به ما ارسال شد.
+								</div>
+							
+								<div class="contact-form-error alert alert-danger d-none mt-4">
+									<strong>خطا!</strong> خطایی در ارسال پیام شما پیش آمد.
+									<span class="mail-error-message text-1 d-block"></span>
+								</div>
+                            {% csrf_token %}	
+								<div class="form-row">
+									<div class="form-group col-lg-6">
+										<label class="required font-weight-bold text-dark text-2">نام کامل</label>
+										<input type="text" value="" name="full_name" data-msg-required="لطفا نام خود را وارد کنید." maxlength="100" class="form-control" name="full_name" required>
+									</div>
+									<div class="form-group col-lg-6">
+										<label class="required font-weight-bold text-dark text-2">آدرس ایمیل یا شماره همراه</label>
+										<input type="text" value="" name="phone" data-msg-required="لطفا آدرس ایمیل یا شماره همراه خود را وارد کنید." data-msg-email="لطفا یک آدرس ایمیل معتبر وارد کنید." maxlength="100" class="form-control text-left" name="email_phone" dir="ltr" required>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col">
+										<label class="font-weight-bold text-dark text-2">موضوع</label>
+										<input type="text" value="" name="title" data-msg-required="لطفا موضوع را وارد کنید." maxlength="100" class="form-control" name="subject">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col">
+										<label class="required font-weight-bold text-dark text-2">پیام</label>
+										<textarea maxlength="5000" name="comment" data-msg-required="لطفا پیام خود را وارد کنید." rows="8" class="form-control" name="message" required></textarea>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col">
+										<input type="submit" value="ارسال پیام" class="btn btn-primary btn-modern" data-loading-text="در حال بارگذاری ...">
+									</div>
+								</div>
+							</form>
 
 						</div>
 

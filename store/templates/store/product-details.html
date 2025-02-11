@@ -160,7 +160,11 @@
 											بافت
 										</th>
 										<td class="border-top-0">
+											{% if product.texture %}
 											{{ product.texture }}
+											{% else %}
+											-
+											{% endif %}
 										</td>
 									</tr>
 									<tr>
@@ -203,7 +207,11 @@
 											رج
 										</th>
 										<td>
+											{% if product.wate %}
 											{{ product.wate }}
+											{% else %}
+											-
+											{% endif %}
 										</td>
 									</tr>
 									<tr>
@@ -211,7 +219,11 @@
 											نقشه
 										</th>
 										<td>
+											{% if product.pattern %}
 											{{ product.pattern }}
+											{% else %}
+											-
+											{% endif %}
 										</td>
 									</tr>
 									{% if product.pile %}

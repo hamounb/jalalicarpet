@@ -13,7 +13,7 @@ class CategoryView(views.View):
 
     def get(self, request, pc):
         primary = pc
-        category = CategoryModel.objects.all()
+        category = CategoryModel.objects.all().order_by("primary_cat", "number")
         return render(request, 'store/category.html', {'category':category, 'primary':primary})
 
 

@@ -118,7 +118,7 @@
 									{% if product.available %}
 									{% if product.on_sale  %}
 									<div class="col-sm-6 col-lg-4 product">
-										<a href="shop-product-sidebar-right.html">
+										<a href="{% url 'store:product-details' code=product.code %}">
 											<span class="onsale">ویژه!</span>
 										</a>
 										<span class="product-thumb-info border-0">
