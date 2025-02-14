@@ -23,16 +23,17 @@
 							<div class="overflow-hidden mb-4 pb-3">
 								<p class="mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">فرم زیر را پر کنید تا با شما تماس بگیریم</p>
 							</div>
-
-							<form class="contact-form mb-5 mb-lg-0" method="POST">
-                                <div class="contact-form-success alert alert-success d-none mt-4">
-									<strong>موفقیت!</strong> پیام شما به ما ارسال شد.
-								</div>
-							
-								<div class="contact-form-error alert alert-danger d-none mt-4">
-									<strong>خطا!</strong> خطایی در ارسال پیام شما پیش آمد.
-									<span class="mail-error-message text-1 d-block"></span>
-								</div>
+							{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'error' %}
+							<div class="contact-form-error alert alert-danger mt-4">
+								<strong>خطا!</strong> {{ message }}
+								<span class="mail-error-message text-1 d-block"></span>
+							</div>
+								{% endif %}
+							{% endfor %}
+							{% endif %}
+							<form method="post">
                             {% csrf_token %}	
 								<div class="form-row">
 									<div class="form-group col-lg-6">
@@ -41,19 +42,19 @@
 									</div>
 									<div class="form-group col-lg-6">
 										<label class="required font-weight-bold text-dark text-2">آدرس ایمیل یا شماره همراه</label>
-										<input type="text" value="" name="phone" data-msg-required="لطفا آدرس ایمیل یا شماره همراه خود را وارد کنید." data-msg-email="لطفا یک آدرس ایمیل معتبر وارد کنید." maxlength="100" class="form-control text-left" name="email_phone" dir="ltr" required>
+										<input type="text" value="" name="phone" data-msg-required="لطفا آدرس ایمیل یا شماره همراه خود را وارد کنید." maxlength="100" class="form-control text-left" name="phone" dir="ltr" required>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group col">
 										<label class="font-weight-bold text-dark text-2">موضوع</label>
-										<input type="text" value="" name="title" data-msg-required="لطفا موضوع را وارد کنید." maxlength="100" class="form-control" name="subject">
+										<input type="text" value="" name="subject" data-msg-required="لطفا موضوع را وارد کنید." maxlength="100" class="form-control" name="subject">
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group col">
 										<label class="required font-weight-bold text-dark text-2">پیام</label>
-										<textarea maxlength="5000" name="comment" data-msg-required="لطفا پیام خود را وارد کنید." rows="8" class="form-control" name="message" required></textarea>
+										<textarea maxlength="5000" name="message" data-msg-required="لطفا پیام خود را وارد کنید." rows="8" class="form-control" name="message" required></textarea>
 									</div>
 								</div>
 								<div class="form-row">
@@ -70,7 +71,7 @@
 								<h4 class="mt-2 mb-1"><strong>فروشگاه</strong> ما</h4>
 								<ul class="list list-icons list-icons-style-2 mt-2">
 									<li class="line-height-9"><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">آدرس:</strong> تبریز، بازارمظفریه، پلاک۱۹ </li>
-									<li class="line-height-9"><i class="fas fa-phone top-6"></i> <strong class="text-dark">تلفن:</strong> <span class="ltr-text">09141161890-09141196297</span></li>
+									<li class="line-height-9"><i class="fas fa-phone top-6"></i> <strong class="text-dark">تلفن:</strong> <span class="ltr-text">09141161890 - 09141196297</span></li>
 								</ul>
 							</div>
 
@@ -78,7 +79,7 @@
 								<h4 class="mt-2 mb-1"><strong>دفتر</strong> ما</h4>
 								<ul class="list list-icons list-icons-style-2 mt-2">
 									<li class="line-height-9"><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">آدرس:</strong> تبریز، بلوار ۲۹بهمن، برج شهر </li>
-									<li class="line-height-9"><i class="fas fa-phone top-6"></i> <strong class="text-dark">تلفن:</strong> <span class="ltr-text">04133248201-04133248034</span></li>
+									<li class="line-height-9"><i class="fas fa-phone top-6"></i> <strong class="text-dark">تلفن:</strong> <span class="ltr-text">04133248201 - 04133248034</span></li>
 									<li class="line-height-9"><i class="fas fa-envelope top-6"></i> <strong class="text-dark">ایمیل:</strong> <a href="mailto:mail@example.com">jalalicarpet.ir@gmail.com</a></li>
 								</ul>
 							</div>
@@ -113,16 +114,17 @@
 							<div class="overflow-hidden mb-4 pb-3">
 								<p class="mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">فرم زیر را پر کنید تا با شما تماس بگیریم</p>
 							</div>
-
-							<form class="contact-form mb-5 mb-lg-0" method="POST">
-                                <div class="contact-form-success alert alert-success d-none mt-4">
-									<strong>موفقیت!</strong> پیام شما به ما ارسال شد.
-								</div>
-							
-								<div class="contact-form-error alert alert-danger d-none mt-4">
-									<strong>خطا!</strong> خطایی در ارسال پیام شما پیش آمد.
-									<span class="mail-error-message text-1 d-block"></span>
-								</div>
+							{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'error' %}
+							<div class="contact-form-error alert alert-danger mt-4">
+								<strong>خطا!</strong> {{ message }}
+								<span class="mail-error-message text-1 d-block"></span>
+							</div>
+								{% endif %}
+							{% endfor %}
+							{% endif %}
+							<form method="post">
                             {% csrf_token %}	
 								<div class="form-row">
 									<div class="form-group col-lg-6">
@@ -131,19 +133,19 @@
 									</div>
 									<div class="form-group col-lg-6">
 										<label class="required font-weight-bold text-dark text-2">آدرس ایمیل یا شماره همراه</label>
-										<input type="text" value="" name="phone" data-msg-required="لطفا آدرس ایمیل یا شماره همراه خود را وارد کنید." data-msg-email="لطفا یک آدرس ایمیل معتبر وارد کنید." maxlength="100" class="form-control text-left" name="email_phone" dir="ltr" required>
+										<input type="text" value="" name="phone" data-msg-required="لطفا آدرس ایمیل یا شماره همراه خود را وارد کنید." maxlength="100" class="form-control text-left" name="phone" dir="ltr" required>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group col">
 										<label class="font-weight-bold text-dark text-2">موضوع</label>
-										<input type="text" value="" name="title" data-msg-required="لطفا موضوع را وارد کنید." maxlength="100" class="form-control" name="subject">
+										<input type="text" value="" name="subject" data-msg-required="لطفا موضوع را وارد کنید." maxlength="100" class="form-control" name="subject">
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group col">
 										<label class="required font-weight-bold text-dark text-2">پیام</label>
-										<textarea maxlength="5000" name="comment" data-msg-required="لطفا پیام خود را وارد کنید." rows="8" class="form-control" name="message" required></textarea>
+										<textarea maxlength="5000" name="message" data-msg-required="لطفا پیام خود را وارد کنید." rows="8" class="form-control" name="message" required></textarea>
 									</div>
 								</div>
 								<div class="form-row">

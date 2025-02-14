@@ -68,8 +68,8 @@ Theme Version:	@@version
 }
 
 .shop .products .product .price del {
-  color: rgba(145, 145, 145, 0.5);
-  font-size: 0.7em;
+  color: #dc3545f0;
+  font-size: 0.9em;
   margin: -2px 0 0;
 }
 

@@ -7,10 +7,18 @@ from .forms import ContactUsForm, FooterNewsForm
 from blog.models import BlogModel
 from store.context_processors import HeaderSearchForm
 from django.db.models import Q
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from django.contrib import messages
+from django.db.utils import IntegrityError
 
 # Create your views here.
 
+password = "yghx xikb lkdo mnmh"
 
+gmail_user = 'jalalicollection@gmail.com'
+gmail_password = 'yghxxikblkdomnmh'
 
 class IndexView(views.View):
 
@@ -56,6 +64,31 @@ class ContactUsView(views.View):
         form_c = ContactUsForm(request.POST)
         if form_c.is_valid():
             form_c.save()
+            name = form_c.cleaned_data.get("full_name")
+            phone = form_c.cleaned_data.get("phone")
+            subject = form_c.cleaned_data.get("subject")
+            message = form_c.cleaned_data.get("message")
+            try:
+                server = smtplib.SMTP(host='smtp.gmail.com', port=587)
+                server.starttls()
+                server.login(gmail_user, gmail_password)
+                msg = MIMEMultipart()
+                msg['From'] = gmail_user
+                msg['To'] = 'jalalicarpet.ir@gmail.com'
+                msg['Subject'] = f"{subject}"
+                message = f"""
+                Contact Us Form
+
+                نام کامل: {name}
+                شماره موبایل یا ایمیل: {phone}
+                متن پیام:
+                {message}
+                """
+                msg.attach(MIMEText(message, 'plain'))
+                server.send_message(msg)
+            except Exception as e:
+                messages.error(request, f"خطای سیستمی رخ داده است، لطفاً دوباره پیام خود را ارسال کنید.")
+                return render(request, 'jcompany/contact-us.html', {'form_c':form_c})
             return render(request, 'jcompany/message-success.html')
         return render(request, 'jcompany/contact-us.html', {'form_c':form_c})
 
@@ -113,7 +146,7 @@ class SearchResaultView(views.View):
     def get(self, request, search):
         products = ProductModel.objects.filter(Q(code__iexact=search) | Q(category__title__icontains=search) | 
         Q(name__contains=search))
-        paginator = Paginator(products, 12)
+        paginator = Paginator(products, 24)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'jcompany/search.html', {'page_obj':page_obj})
@@ -132,6 +165,26 @@ class FooterNewsView(views.View):
         form = FooterNewsForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data.get("text")
-            form.save()
+            try:
+                form.save()
+            except IntegrityError:
+                return render(request, "jcompany/news.html", {"text":text})
+            try:
+                server = smtplib.SMTP(host='smtp.gmail.com', port=587)
+                server.starttls()
+                server.login(gmail_user, gmail_password)
+                msg = MIMEMultipart()
+                msg['From'] = gmail_user
+                msg['To'] = 'jalalicarpet.ir@gmail.com'
+                msg['Subject'] = f"عضویت جدید در خبرنامه"
+                message = f"""
+                News Form
+                شماره موبایل یا ایمیل: {text}
+                متن پیام: عضو جدید با موفقیت ثبت شد.
+                """
+                msg.attach(MIMEText(message, 'plain'))
+                server.send_message(msg)
+            except Exception as e:
+                return render(request, "jcompany/news.html", {"form":form})
             return render(request, "jcompany/news.html", {"text":text})
         return render(request, "jcompany/news.html", {"form":form})

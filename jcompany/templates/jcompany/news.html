@@ -40,8 +40,8 @@
         <div class="row justify-content-center py-4">
             <div class="col-sm-10 col-md-8 col-lg-6 text-center">
                 <div class="http-error-main">
-                    <h2 class="mb-5">موفق!</h2>
-                    <span class="text-6 font-weight-bold text-color-dark">خطایی رخ داده است، لطفا دوباره سعی کنید</span>
+                    <h2 class="mb-5">ناموفق!</h2>
+                    <span class="text-6 font-weight-bold text-color-dark">شما قبلاً عضو خبرنامه شده‌اید!</span>
                     <form id="form" action="{% url 'jcompany:news' %}" method="post" class="mr-md-4 mb-3">
                         {% csrf_token %}
                         <div class="row mt-3 text-center">
