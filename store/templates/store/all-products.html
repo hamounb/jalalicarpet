@@ -28,53 +28,55 @@
 						<div class="col-lg-3">
 							<aside class="sidebar mb-5 mb-lg-0 pb-3 pb-lg-0">
 								<h5 class="font-weight-bold pt-2">فیلترها</h5>
+								{% if pattern %}
+									{% for i in pattern %}
+									<span class="badge badge-primary badge-sm py-1">{{ i }}</span>
+									{% endfor %}
+								{% endif %}
+								{% if wate %}
+									{% for i in wate %}
+									<span class="badge badge-primary badge-sm py-1">{{ i }}</span>
+									{% endfor %}
+								{% endif %}
 								<form id="checkbox-form" method="get">
 									{% csrf_token %}
 								<ul class="nav flex-column">
-									<li class="nav-item pb-2">{{ form_f.price }}</li>
-									<li class="nav-item pb-2">
-										<div class="accordion without-bg" id="accordion7">
-											<div class="card card-default">
-												<div class="card-header">
-													<h4 class="card-title m-0">
-														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion7" href="#collapse7One">
-															نقشه
-														</a>
-														
-													</h4>
+									<li class="nav-item pb-1">
+										<div class="toggle toggle-primary m-0" data-plugin-toggle>
+											<section class="toggle {% if price %} active {% endif %}">
+												<a class="toggle-title">به ترتیب</a>
+												<div class="toggle-content p-3">
+													{{ form_f.price }}
 												</div>
-												<div id="collapse7One" class="collapse">
-													<div class="card-body">
-														{{ form_f.pattern }}
-													</div>
-												</div>
-											</div>
-										</div>
+											</section>
+										<div>
 									</li>
-									<li class="nav-item pb-2">
-										<div class="accordion without-bg" id="accordion7">
-											<div class="card card-default">
-												<div class="card-header">
-													<h4 class="card-title m-0">
-														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion7" href="#collapse7Two">
-															رج
-														</a>
-													</h4>
+									<li class="nav-item-pb-1">
+										<div class="toggle toggle-primary m-0" data-plugin-toggle>
+											<section class="toggle">
+												<a class="toggle-title">نقشه</a>
+												<div class="toggle-content p-3">
+													{{ form_f.pattern }}
 												</div>
-												<div id="collapse7Two" class="collapse">
-													<div class="card-body">
-														{{ form_f.wate }}
-													</div>
+											</section>
+										<div>
+									</li>
+									<li class="nav-item-pb-1">
+										<div class="toggle toggle-primary m-0" data-plugin-toggle>
+											<section class="toggle">
+												<a class="toggle-title">رج</a>
+												<div class="toggle-content p-3">
+													{{ form_f.wate }}
 												</div>
-											</div>
-										</div>
+											</section>
+										<div>
 									</li>
 								</ul>
 								</form>
 								<h5 class="font-weight-bold pt-5">برچسب ها</h5>
 								<div class="mb-3 pb-1">
 
-                                {% for tags in tags%}
+                                {% for tags in tags %}
 
 									<a href="{% url 'store:tag-products' id=tags.pk %}"><span class="badge badge-dark badge-sm badge-pill py-1 mr-1">{{ tags.name }}</span></a>
 
@@ -97,9 +99,10 @@
 														</a>
 													</div>
 												</div>
-												<div class="post-info mt-1">
+												<div class="post-info">
 													<a href="{% url 'store:product-details' code=sale.code %}">{{ sale.name }}</a>
 													<div class="post-meta text-dark font-weight-semibold line-height-double">
+														<del>{{ sale.price|intcomma:False }} تومان</del>
 														{{ sale.on_sale|intcomma:False }} تومان
 													</div>
 												</div>

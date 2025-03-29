@@ -31,9 +31,9 @@ class IndexView(views.View):
             lux = CategoryModel.objects.get(title__contains='کلکسیونی')
         except CategoryModel.DoesNotExist:
             lux = ""
-        new_blog = BlogModel.objects.all().order_by('-created_date')[:4]
+        new_blog = BlogModel.objects.all().order_by('-created_date')[:6]
         on_sale = OnSalePosterModel.objects.all().order_by("-created_date")[:1]
-        ex = ExibitionModel.objects.all().order_by('-start_date')[:4]
+        ex = ExibitionModel.objects.all().order_by('-start_date')[:6]
         video = VideoModel.objects.all().order_by('-created_date')[:3]
         customer_video = CustomerVideoModel.objects.all().order_by("-created_date")[:3]
         page_content = {

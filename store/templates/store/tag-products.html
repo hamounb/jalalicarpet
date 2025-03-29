@@ -14,23 +14,114 @@
 <style>
     #id_pattern {
         overflow:auto;
-        height:100px;
+        height:200px;
     }
     #id_wate {
         overflow:auto;
-        height:100px;
+        height:200px;
     }
-</style>
+</style> 
 			<div role="main" class="main shop py-4">
 
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-3">
+							<aside class="sidebar mb-5 mb-lg-0 pb-3 pb-lg-0">
+								<h5 class="font-weight-bold pt-2">فیلترها</h5>
+								{% if pattern %}
+									{% for i in pattern %}
+									<span class="badge badge-primary badge-sm py-1">{{ i }}</span>
+									{% endfor %}
+								{% endif %}
+								{% if wate %}
+									{% for i in wate %}
+									<span class="badge badge-primary badge-sm py-1">{{ i }}</span>
+									{% endfor %}
+								{% endif %}
+								<form id="checkbox-form" method="get">
+									{% csrf_token %}
+								<ul class="nav flex-column">
+									<li class="nav-item pb-1">
+										<div class="toggle toggle-primary m-0" data-plugin-toggle>
+											<section class="toggle {% if price %} active {% endif %}">
+												<a class="toggle-title">به ترتیب</a>
+												<div class="toggle-content p-3">
+													{{ form_f.price }}
+												</div>
+											</section>
+										<div>
+									</li>
+									<li class="nav-item-pb-1">
+										<div class="toggle toggle-primary m-0" data-plugin-toggle>
+											<section class="toggle">
+												<a class="toggle-title">نقشه</a>
+												<div class="toggle-content p-3">
+													{{ form_f.pattern }}
+												</div>
+											</section>
+										<div>
+									</li>
+									<li class="nav-item-pb-1">
+										<div class="toggle toggle-primary m-0" data-plugin-toggle>
+											<section class="toggle">
+												<a class="toggle-title">رج</a>
+												<div class="toggle-content p-3">
+													{{ form_f.wate }}
+												</div>
+											</section>
+										<div>
+									</li>
+								</ul>
+								</form>
+								<h5 class="font-weight-bold pt-5">برچسب ها</h5>
+								<div class="mb-3 pb-1">
+
+                                {% for tags in tags %}
+									{% if tags.name == tag.name %}
+									<a href="{% url 'store:tag-products' id=tags.pk %}"><span class="badge badge-primary badge-sm badge-pill py-1 mr-1">{{ tags.name }}</span></a>
+									{% else %}
+									<a href="{% url 'store:tag-products' id=tags.pk %}"><span class="badge badge-dark badge-sm badge-pill py-1 mr-1">{{ tags.name }}</span></a>
+									{% endif %}
+								{% endfor %}
+								</div>
+								<div class="row mb-3">
+									<div class="col">
+										<h5 class="font-weight-bold pt-5">محصولات ویژه</h5>
+										<ul class="simple-post-list">
+										{% for sale in sale %}
+											<li>
+												<div class="post-image">
+													<div class="d-block">
+														<a href="#">
+														{% if sale.cover %}
+															<img alt="{{ sale.name }}" width="60" height="60" class="img-fluid" src="{{ sale.cover.url }}">
+														{% else %}
+															<img alt="{{ sale.name }}" width="60" height="60" class="img-fluid" src="{% static 'img/blank.jpg' %}">
+														{% endif %}
+														</a>
+													</div>
+												</div>
+												<div class="post-info mt-1">
+													<a href="{% url 'store:product-details' code=sale.code %}">{{ sale.name }}</a>
+													<div class="post-meta text-dark font-weight-semibold line-height-double">
+														<del>{{ sale.price|intcomma:False }} تومان</del>
+														{{ sale.on_sale|intcomma:False }} تومان
+													</div>
+												</div>
+											</li>
+										{% endfor %}
+										</ul>
+									</div>
+								</div>
+							</aside>
+						</div>
+						<div class="col-lg-9">
+							<h5 class="font-weight-bold mb-4">برچسب : {{ tag.name }}</h5>
 							<div class="masonry-loader masonry-loader-showing">
 								<div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
-									{% for product in tags %}
+									{% for product in page_obj %}
 									{% if product.available %}
-									{% if product.on_sale %}
+									{% if product.on_sale  %}
 									<div class="col-sm-6 col-lg-4 product">
 										<a href="{% url 'store:product-details' code=product.code %}">
 											<span class="onsale">ویژه!</span>

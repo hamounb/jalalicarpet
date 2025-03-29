@@ -106,14 +106,14 @@
 						{% if product.available %}
 							{% if product.on_sale %}
 							<p class="price">
-							<del><span class="amount text-primary">قیمت:</span> {% if product.price %}{{ product.price|intcomma:False }}{% else %}0{% endif %} تومان</del>
+							<del><span class="amount text-primary">قیمت:</span> {% if product.price %}{{ product.price|intcomma:False }}{% else %}بزودی{% endif %} تومان</del>
 							</p>
 							<p class="price">
-							<span class="amount text-primary">قیمت با تخفیف:</span> {% if product.on_sale %}{{ product.on_sale|intcomma:False }}{% else %}0{% endif %} تومان
+							<span class="amount text-primary">قیمت با تخفیف:</span> {% if product.on_sale %}{{ product.on_sale|intcomma:False }}{% else %}بزودی{% endif %} تومان
 							</p>
 							{% else %}
 							<p class="price">
-								<span class="amount text-primary">قیمت:</span> {% if product.price %}{{ product.price|intcomma:False }}{% else %}0{% endif %} تومان
+								<span class="amount text-primary">قیمت:</span> {% if product.price %}{{ product.price|intcomma:False }}{% else %}بزودی{% endif %} تومان
 							</p>
 							{% endif %}
 						{% endif %}

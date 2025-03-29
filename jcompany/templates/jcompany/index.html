@@ -150,12 +150,11 @@
 
 	{% if ex %}
 	<div class="container-fluid mb-3">
-		<h4 class="text-uppercase text-primary px-3">نمایشگاه‌ها</h4>
-		<div class="row p-3">
+		<h4 class="text-uppercase text-primary px-3 mb-3"><a href="{% url 'jcompany:exhibition' %}">نمایشگاه‌ها</a></h4>		
+		<div class="owl-carousel owl-theme full-width" data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 4}, '768': {'items': 4}, '992': {'items': 4}, '1200': {'items': 4}}, 'loop': true, 'nav': true, 'autoplay': true, 'autoplayTimeout': 3000, 'dots': false}">
 			{% for ex in ex %}
 			{% if ex %}
-			<div class="col-12 col-lg-3 p-1">
-				<span class="thumb-info thumb-info-hide-wrapper-bg p-1">
+				<span class="thumb-info thumb-info-no-borders m-1">
 					<span class="thumb-info-wrapper">
 						<img src="{{ ex.cover.url }}" class="img-fluid" alt="{{ ex.title }}-{{ ex.city.name }}" style="width:100%">
 						<span class="thumb-info-title">
@@ -164,7 +163,6 @@
 						</span>
 					</span>
 				</span>
-			</div>
 			{% endif %}
 			{% endfor %}
 		</div>
@@ -172,7 +170,7 @@
 	{% endif %}
 
 	{% if video %}
-	<section class="bg-color-primary p-4">
+	<section class="bg-color-primary p-4 mt-4">
 	<div class="container-fluid pt-2">
 		<h4 class="text-uppercase text-light">جدیدترین ویدئوها<span style="float: left;"><a class="text-light" href="#">مشاهده همه</a></span></h4>
 		
@@ -193,44 +191,10 @@
 	</section>
 	{% endif %}
 
-	{% if new_blog %}
-	<div class="container-fluid mt-3 mb-3">
-		<h4 class="text-uppercase text-primary px-3">آخرین مطالب</h4>
-		<div class="row p-3">
-			<div class="col-lg-3">
-				{% for blog in new_blog %}
-				{% if blog %}
-				<article class="post post-medium border-0 p-1">
-					<div class="post-image">
-						<a href="blog-post.html">
-							<img src="{{ blog.cover.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="">
-						</a>
-					</div>
-
-					<div class="post-content">
-
-						<h2 class="font-weight-semibold text-4 line-height-5 mt-3 mb-1 pt-1"><a href="{% url 'blog:blog-details' bid=blog.pk %}">{{ blog.title|safe|truncatewords:15 }}</a></h2>
-						<p>{{ blog.content|safe|truncatewords:20 }}</p>
-
-						<div class="post-meta">
-							<span><i class="far fa-user"></i> توسط  <a href="#">{{ blog.user.first_name }} {{ blog.user.last_name }}</a> </span>
-							<span><i class="far fa-folder"></i> <a href="#">{{ blog.category.title }}</a> </span>
-							<span class="d-block mt-2 pt-1"><a href="{% url 'blog:blog-details' bid=blog.pk %}" class="btn btn-block btn-primary text-3 text-uppercase">بیشتر بخوانید</a></span>
-						</div>
-
-					</div>
-				</article>
-				{% endif %}
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-	{% endif %}
-
 	{% if customer_video %}
-	<section class="bg-color-primary p-4">
+	<section class=" p-4">
 	<div class="container-fluid pt-2">
-		<h4 class="text-uppercase text-light">رضایت مشتریان ما<span style="float: left;"><a class="text-light" href="#">مشاهده همه</a></span></h4>
+		<h4 class="text-uppercase text-dark">رضایت مشتریان ما<span style="float: left;"><a class="text-light" href="#">مشاهده همه</a></span></h4>
 		
 		<div class="row">
 			{% for video in customer_video %}
@@ -249,14 +213,14 @@
 	</section>
 	{% endif %}
 
-	<section class="bg-color-light p-5">
+	<section class="bg-color-primary p-5">
 		<div class="container-fluid">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-6 pb-lg-0 pr-lg-5 mb-sm-5 mb-lg-0">
 					<h2 class="text-color-dark font-weight-normal text-6 mb-2">در مجموعه <strong class="font-weight-extra-bold">فرش جلالی</strong> چه خبر!</h2>
-					<p class="lead">بیش از نیم قرن تجربه در تولید و فروش دستبافته‌های اصیل ایرانی
+					<p class="lead text-light">بیش از نیم قرن تجربه در تولید و فروش دستبافته‌های اصیل ایرانی
 						موجب شده تا امروز فرش جلالی تبریز یکی از بزرگترین مجموعه‌های دستبافت کشور باشد. </p>
-					<p class="pr-5 mr-5">شما را آشنا می‌کنیم با مجموعه‌ای با بیش از 3000 محصول متفاوت که به دست هنرمندان بزرگ کشور طراحی و تولید شده‌اند.</p>
+					<p class="pr-5 mr-5 text-light">گنجینه‌ای از فرش و تابلوفرش‌های دستباف تبریز، گلیم و فرش‌های سنتی ایران زمین، بیش از 3000 محصول متنوع که به دست هنرمندان بزرگ کشور طراحی و تولید شده‌اند.</p>
 					<a href="{% url 'jcompany:about-us' %}" class="btn font-weight-semibold btn-px-4 btn-py-2 text-2" style="background-color:#d5b270">آشنایی بیشتر</a>
 				</div>
 				<div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 mt-sm-5" style="top: 1.7rem;">
@@ -267,6 +231,39 @@
 			</div>
 		</div>
 	</section>
+
+	{% if new_blog %}
+	<div class="container-fluid mt-5">
+		<h4 class="text-uppercase text-primary px-3"><a href="{% url 'blog:blog' %}">آخرین مطالب</a><span style="float: left;"><a href="{% url 'blog:blog' %}">مشاهده همه</a></span></h4>
+			
+		<div class="owl-carousel owl-theme full-width" data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 4}, '768': {'items': 4}, '992': {'items': 4}, '1200': {'items': 4}}, 'loop': true, 'nav': true, 'autoplay': true, 'autoplayTimeout': 3000, 'dots': false}">
+			{% for blog in new_blog %}
+			{% if blog %}
+				<article class="post post-medium border-0 p-1">
+					<div class="post-image">
+						<a href="{% url 'blog:blog-details' bid=blog.pk %}">
+							<img src="{{ blog.cover.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="">
+						</a>
+					</div>
+
+					<div class="post-content">
+
+						<h2 class="font-weight-semibold text-4 line-height-5 mt-3 mb-1 pt-1"><a href="{% url 'blog:blog-details' bid=blog.pk %}">{{ blog.title|safe|truncatewords:15 }}</a></h2>
+						<p>{{ blog.content|safe|truncatewords:20 }}</p>
+
+						<div class="post-meta">
+							<span><i class="far fa-user"></i> توسط  <a href="#">{{ blog.user.first_name }} {{ blog.user.last_name }}</a> </span>
+							<span><i class="far fa-folder"></i> <a href="#">{{ blog.category.title }}</a> </span>
+							<span class="d-block mt-2 pt-1"><a href="{% url 'blog:blog-details' bid=blog.pk %}" class="btn btn-block btn-primary text-3 text-uppercase">بیشتر بخوانید</a></span>
+						</div>
+
+					</div>
+				</article>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
 
 </div>
 {% endblock content %}

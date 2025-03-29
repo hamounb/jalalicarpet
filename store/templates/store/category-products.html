@@ -60,6 +60,7 @@
 												<div class="post-info mt-1">
 													<a href="{% url 'store:product-details' code=sale.code %}">{{ sale.name }}</a>
 													<div class="post-meta text-dark font-weight-semibold line-height-double">
+														<del>{{ sale.price|intcomma:False }} تومان</del>
 														{{ sale.on_sale|intcomma:False }} تومان
 													</div>
 												</div>

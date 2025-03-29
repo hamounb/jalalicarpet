@@ -141,9 +141,9 @@ class AllProductsView(views.View):
             if wate and pattern:
                 products = ProductModel.objects.filter(Q(wate__in=wate) & Q(pattern__in=pattern)).order_by('available', '-created_date')
                 if price == "lth":
-                    products = ProductModel.objects.filter(Q(wate__in=wate) & Q(pattern__in=pattern)).order_by('available', 'price')
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(wate__in=wate) & Q(pattern__in=pattern) & ~Q(price=None)).order_by('available', 'my_int_field')
                 elif price == "htl":
-                    products = ProductModel.objects.filter(Q(wate__in=wate) & Q(pattern__in=pattern)).order_by('available', '-price')
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(wate__in=wate) & Q(pattern__in=pattern) & ~Q(price=None)).order_by('available', '-my_int_field')
                 elif price == "fav":
                     products = ProductModel.objects.filter(Q(wate__in=wate) & Q(pattern__in=pattern)).order_by('available', '-visit')
                 paginator = Paginator(products, 24)
@@ -154,14 +154,17 @@ class AllProductsView(views.View):
                     'sale':on_sale,
                     'tags':tags,
                     'form_f':form_f,
+                    'wate':wate,
+                    'pattern':pattern,
+                    'price':price,
                 }
                 return render(request, 'store/all-products.html', page_content)
             elif not wate and not pattern:
-                products = ProductModel.objects.all().order_by('available', '-created_date')
+                products =ProductModel.objects.all().order_by('available', '-created_date')
                 if price == "lth":
-                    products = ProductModel.objects.all().order_by('available', 'price')
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(~Q(price=None)).order_by('available', 'my_int_field')
                 elif price == "htl":
-                    products = ProductModel.objects.all().order_by('available', '-price')
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(~Q(price=None)).order_by('available', '-my_int_field')
                 elif price == "fav":
                     products = ProductModel.objects.all().order_by('available', '-visit')
                 paginator = Paginator(products, 24)
@@ -172,14 +175,17 @@ class AllProductsView(views.View):
                     'sale':on_sale,
                     'tags':tags,
                     'form_f':form_f,
+                    'wate':wate,
+                    'pattern':pattern,
+                    'price':price,
                 }
                 return render(request, 'store/all-products.html', page_content)
             else:
                 products = ProductModel.objects.filter(Q(wate__in=wate) | Q(pattern__in=pattern)).order_by('available', '-created_date')
                 if price == "lth":
-                    products = ProductModel.objects.filter(Q(wate__in=wate) | Q(pattern__in=pattern)).order_by('available', 'price')
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(wate__in=wate) | Q(pattern__in=pattern) & ~Q(price=None)).order_by('available', 'my_int_field')
                 elif price == "htl":
-                    products = ProductModel.objects.filter(Q(wate__in=wate) | Q(pattern__in=pattern)).order_by('available', '-price')
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(wate__in=wate) | Q(pattern__in=pattern) & ~Q(price=None)).order_by('available', '-my_int_field')
                 elif price == "fav":
                     products = ProductModel.objects.filter(Q(wate__in=wate) | Q(pattern__in=pattern)).order_by('available', '-visit')
                 paginator = Paginator(products, 24)
@@ -190,6 +196,9 @@ class AllProductsView(views.View):
                     'sale':on_sale,
                     'tags':tags,
                     'form_f':form_f,
+                    'wate':wate,
+                    'pattern':pattern,
+                    'price':price,
                 }
                 return render(request, 'store/all-products.html', page_content)
         else:
@@ -202,6 +211,9 @@ class AllProductsView(views.View):
                 'sale':on_sale,
                 'tags':tags,
                 'form_f':form_f,
+                'wate':wate,
+                'pattern':pattern,
+                'price':price,
             }
             return render(request, 'store/all-products.html', page_content)
 
@@ -270,8 +282,96 @@ class TagsView(views.View):
 
     def get(self, request, id):
         tag = get_object_or_404(TagsModel, pk=id)
-        tags = tag.productmodel_set.all()
-        return render(request, 'store/tag-products.html', {'tags':tags, 'tag':tag})
+        form_f = FilterForm(request.GET)
+        on_sale = ProductModel.objects.filter(on_sale__gt=0)[:3]
+        tags = TagsModel.objects.all()
+        products = ""
+        if form_f.is_valid():
+            wate = form_f.cleaned_data["wate"]
+            pattern = form_f.cleaned_data["pattern"]
+            price = form_f.cleaned_data["price"]
+            if wate and pattern:
+                products = ProductModel.objects.filter(Q(wate__in=wate) & Q(pattern__in=pattern) & Q(tags=tag)).order_by('available', '-created_date')
+                if price == "lth":
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(wate__in=wate) & Q(pattern__in=pattern) & ~Q(price=None) & Q(tags=tag)).order_by('available', 'my_int_field')
+                elif price == "htl":
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(wate__in=wate) & Q(pattern__in=pattern) & ~Q(price=None) & Q(tags=tag)).order_by('available', '-my_int_field')
+                elif price == "fav":
+                    products = ProductModel.objects.filter(Q(wate__in=wate) & Q(pattern__in=pattern) & Q(tags=tag)).order_by('available', '-visit')
+                paginator = Paginator(products, 24)
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
+                page_content = {
+                    'page_obj':page_obj,
+                    'sale':on_sale,
+                    'tags':tags,
+                    'form_f':form_f,
+                    'tag':tag,
+                    'wate':wate,
+                    'pattern':pattern,
+                    'price':price,
+                }
+                return render(request, 'store/tag-products.html', page_content)
+            elif not wate and not pattern:
+                products =ProductModel.objects.filter(tags=tag).order_by('available', '-created_date')
+                if price == "lth":
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(~Q(price=None) & Q(tags=tag)).order_by('available', 'my_int_field')
+                elif price == "htl":
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(~Q(price=None) & Q(tags=tag)).order_by('available', '-my_int_field')
+                elif price == "fav":
+                    products = ProductModel.objects.filter(tags=tag).order_by('available', '-visit')
+                paginator = Paginator(products, 24)
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
+                page_content = {
+                    'page_obj':page_obj,
+                    'sale':on_sale,
+                    'tags':tags,
+                    'form_f':form_f,
+                    'tag':tag,
+                    'wate':wate,
+                    'pattern':pattern,
+                    'price':price,
+                }
+                return render(request, 'store/tag-products.html', page_content)
+            else:
+                products = ProductModel.objects.filter(Q(tags=tag)).filter(Q(wate__in=wate) | Q(pattern__in=pattern)).order_by('available', '-created_date')
+                if price == "lth":
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(~Q(price=None) & Q(tags=tag)).filter(Q(wate__in=wate) | Q(pattern__in=pattern)).order_by('available', 'my_int_field')
+                elif price == "htl":
+                    products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(~Q(price=None) & Q(tags=tag)).filter(Q(wate__in=wate) | Q(pattern__in=pattern)).order_by('available', '-my_int_field')
+                elif price == "fav":
+                    products = ProductModel.objects.filter(Q(wate__in=wate) | Q(pattern__in=pattern) & Q(tags=tag)).order_by('available', '-visit')
+                paginator = Paginator(products, 24)
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
+                page_content = {
+                    'page_obj':page_obj,
+                    'sale':on_sale,
+                    'tags':tags,
+                    'form_f':form_f,
+                    'tag':tag,
+                    'wate':wate,
+                    'pattern':pattern,
+                    'price':price,
+                }
+                return render(request, 'store/tag-products.html', page_content)
+        else:
+            products = ProductModel.objects.filter(tags=tag).order_by('available', '-created_date')
+            paginator = Paginator(products, 24)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            page_content = {
+                'page_obj':page_obj,
+                'sale':on_sale,
+                'tags':tags,
+                'form_f':form_f,
+                'tag':tag,
+                'wate':wate,
+                'pattern':pattern,
+                'price':price,
+            }
+            return render(request, 'store/tag-products.html', page_content)
     
 
 class HeaderSearchView(views.View):
@@ -286,7 +386,6 @@ class HeaderSearchView(views.View):
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
             return render(request, 'jcompany/search.html', {'page_obj':page_obj})
-        ref = request.META['HTTP_REFERER']
         return render(request, 'jcompany/search.html', {"results":"none"})
 
         
