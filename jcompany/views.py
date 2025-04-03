@@ -96,17 +96,14 @@ class ContactUsView(views.View):
 class ExhibitionView(views.View):
 
     def get(self, request):
-        try:
-            exhibition = ExibitionModel.objects.all().order_by('-created_date')
-        except ExibitionModel.DoesNotExist:
-            exhibition = []
+        exhibition = ExibitionModel.objects.all().order_by('-created_date')
         suggests = ProductModel.objects.filter(on_sale__gt=0).order_by('-created_date')[:3]
         city = CityModel.objects.all()
         paginator = Paginator(exhibition, 12)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {
-            'exhibition':page_obj,
+            'page_obj':page_obj,
             'suggests':suggests,
             'city':city,
         }

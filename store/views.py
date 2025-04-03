@@ -22,7 +22,7 @@ class CategoryProductsView(views.View):
     def get(self, request, cid):
         products = ProductModel.objects.filter(Q(category__id=cid) & Q(available=True)).order_by('-created_date')
         category = get_object_or_404(CategoryModel, pk=cid)
-        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid)).order_by("number")
         sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
         tags = TagsModel.objects.all()
         paginator = Paginator(products, 24)
@@ -44,7 +44,7 @@ class CategoryProductsVisitedView(views.View):
     def get(self, request, cid):
         products = ProductModel.objects.filter(Q(category__id=cid) & Q(available=True)).order_by('-visit')
         category = get_object_or_404(CategoryModel, pk=cid)
-        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid)).order_by("number")
         sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
         tags = TagsModel.objects.all()
         paginator = Paginator(products, 24)
@@ -66,7 +66,7 @@ class CategoryProductsSaleView(views.View):
     def get(self, request, cid):
         products = ProductModel.objects.filter(Q(category__id=cid) & Q(available=True)).order_by('-on_sale')
         category = get_object_or_404(CategoryModel, pk=cid)
-        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid)).order_by("number")
         sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
         tags = TagsModel.objects.all()
         paginator = Paginator(products, 24)
@@ -88,7 +88,7 @@ class CategoryProductsHighView(views.View):
     def get(self, request, cid):
         products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(category__id=cid) & Q(available=True) & ~Q(price=None)).order_by('-my_int_field')
         category = get_object_or_404(CategoryModel, pk=cid)
-        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid)).order_by("number")
         sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
         tags = TagsModel.objects.all()
         paginator = Paginator(products, 24)
@@ -110,7 +110,7 @@ class CategoryProductsLowView(views.View):
     def get(self, request, cid):
         products = ProductModel.objects.annotate(my_int_field=Cast('price', output_field=models.IntegerField())).filter(Q(category__id=cid) & Q(available=True) & ~Q(price=None)).order_by('my_int_field')
         category = get_object_or_404(CategoryModel, pk=cid)
-        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid))
+        categories = CategoryModel.objects.filter(Q(primary_cat=category.primary_cat) & ~Q(pk=cid)).order_by("number")
         sale = ProductModel.objects.filter(Q(category__primary_cat=category.primary_cat) & Q(available=True) & Q(on_sale__gt="0"))
         tags = TagsModel.objects.all()
         paginator = Paginator(products, 24)

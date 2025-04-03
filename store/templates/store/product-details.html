@@ -281,8 +281,8 @@
 							{% if sproduct.pk != product.pk %}
 							<div class="col-12 col-sm-6 col-lg-3 product">
 								<span class="product-thumb-info border-0">
-									<a href="shop-cart.html" class="add-to-cart-product bg-color-primary">
-										<span class="text-1">افزودن به سبد</span>
+									<a href="{% url 'store:product-details' code=product.code %}" class="add-to-cart-product bg-color-primary">
+										<span class="text-1">جزئیات محصول</span>
 									</a>
 									<a href="{% url 'store:product-details' code=sproduct.code %}">
 										<span class="product-thumb-info-image">
@@ -295,7 +295,8 @@
 										<a href="{% url 'store:product-details' code=sproduct.code %}">
 											<h4 class="text-4 text-primary">{{ sproduct.name }}</h4>
 											<span class="price">
-												<ins><span class="amount text-dark font-weight-semibold">{{ sproduct.price|intcomma:False }} تومان</span></ins>
+												<del><span class="amount text-3">{{ product.price|intcomma:False }} تومان</span></del>
+												<ins><span class="amount text-dark text-3">{{ product.on_sale|intcomma:False }} تومان</span></ins>
 											</span>
 										</a>
 									</span>

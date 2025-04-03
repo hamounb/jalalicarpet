@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+{% load humanize %}
 
 {% load jalali_tags %}
 {% block description %}
@@ -53,18 +55,21 @@
 									{% for suggest in suggests%}
 									<li>
 										<div class="post-image">
-											<div class="img-thumbnail img-thumbnail-no-borders d-block">
-												<a href="{% url 'store:product-details' code=suggest.code %}">
-													{% if suggest.cover %}
-													<img src="{{ suggest.cover.url }}" width="50" height="50" alt="{{ suggest.name }}">
-													{% endif %}
+											<div class="d-block">
+												<a href="#">
+												{% if suggest.cover %}
+													<img alt="{{ suggest.name }}" width="60" height="60" class="img-fluid" src="{{ suggest.cover.url }}">
+												{% else %}
+													<img alt="{{ suggest.name }}" width="60" height="60" class="img-fluid" src="{% static 'img/blank.jpg' %}">
+												{% endif %}
 												</a>
 											</div>
 										</div>
 										<div class="post-info">
 											<a href="{% url 'store:product-details' code=suggest.code %}">{{ suggest.name }}</a>
-											<div class="post-meta">
-												{{ suggest.on_sale }} تومان
+											<div class="post-meta text-dark font-weight-semibold line-height-double">
+												<del>{{ suggest.price|intcomma:False }} تومان</del>
+												{{ suggest.on_sale|intcomma:False }} تومان
 											</div>
 										</div>
 									</li>
@@ -84,7 +89,7 @@
 				</div>
 				{% endif %}
 				<div class="row">	
-					{% for ex in exhibition %}
+					{% for ex in page_obj %}
 					<div class="col-md-6 col-lg-4 isotope-item brands">
 						<div class="portfolio-item">
 							<span class="thumb-info thumb-info-hide-wrapper-bg p-1">
@@ -103,21 +108,19 @@
 
 			</div>
 		</div>
+
 		{% if page_obj.has_next or page_obj.has_previous %}
 		<div class="row mt-4 mb-n3">
 			<div class="col">
-			{% if page_obj.has_next %}
 				<ul class="pagination float-right">
 				{% if page_obj.has_previous %}
-					<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+					<li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
 				{% endif %}
 					<li class="page-item active"><a class="page-link">{{ page_obj.number }}</a></li>
 				{% if page_obj.has_next %}
-					<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-					<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+					<li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
 				{% endif %}
 				</ul>
-			{% endif %}
 			</div>
 		</div>
 		{% endif %}
