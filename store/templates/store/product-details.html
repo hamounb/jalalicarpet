@@ -294,10 +294,22 @@
 									<span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
 										<a href="{% url 'store:product-details' code=sproduct.code %}">
 											<h4 class="text-4 text-primary">{{ sproduct.name }}</h4>
+											{% if sproduct.on_sale %}
 											<span class="price">
-												<del><span class="amount text-3">{{ product.price|intcomma:False }} تومان</span></del>
-												<ins><span class="amount text-dark text-3">{{ product.on_sale|intcomma:False }} تومان</span></ins>
+												{% if sproduct.price %}
+												<del><span class="amount text-3">{{ sproduct.price|intcomma:False }} تومان</span></del>
+												{% endif %}
+												<ins><span class="amount text-dark text-3">{{ sproduct.on_sale|intcomma:False }} تومان</span></ins>
 											</span>
+											{% else %}
+											<span class="price">
+												{% if sproduct.price %}
+													<span class="amount text-dark text-3">{{ sproduct.price|intcomma:False }} تومان</span>
+													{% else %}
+													<span class="amount text-dark text-3">بزودی</span>
+												{% endif %}
+											</span>
+											{% endif %}
 										</a>
 									</span>
 								</span>
